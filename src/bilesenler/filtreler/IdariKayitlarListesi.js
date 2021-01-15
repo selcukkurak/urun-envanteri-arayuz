@@ -1,10 +1,9 @@
-import React, {memo, useCallback} from "react";
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import {siraliIdariKayitlar} from "../store/selectors";
-import {seciliIdariKayitState} from "../store";
-import Select from "react-select";
-import {FiltreGosterge} from "./CografiDuzeyListesi";
-
+import React, { memo, useCallback } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { siraliIdariKayitlar } from '../store/selectors'
+import { seciliIdariKayitState } from '../store'
+import Select from 'react-select'
+import Filtre from './Filtre'
 
 function IdariKayitlarListesi () {
     const idariKayitlar = useRecoilValue(siraliIdariKayitlar)
@@ -17,11 +16,13 @@ function IdariKayitlarListesi () {
         setSeciliIdariKayit(selectedOption)
     }, [setSeciliIdariKayit])
     return (
-        <Select
-            placeholder={(<div>İdari Kayıtlar <FiltreGosterge>{idariKayitlar && idariKayitlar.length}</FiltreGosterge></div>)}
-            options={idariKayitlarOption}
-            onChange={handleChange}
-        />
+        <Filtre etiket={idariKayitlar && idariKayitlar.length}>
+            <Select
+              placeholder='İdari Kayıtlar'
+              options={idariKayitlarOption}
+              onChange={handleChange}
+            />
+        </Filtre>
     )
 }
 export default memo(IdariKayitlarListesi)

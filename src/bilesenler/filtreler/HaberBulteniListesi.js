@@ -1,10 +1,9 @@
-import React, {memo, useCallback} from "react";
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import {tekilBultenler} from "../store/selectors";
-import {seciliBultenState} from "../store";
-import {FiltreGosterge} from "./CografiDuzeyListesi";
-import Select from "react-select";
-
+import React, { memo, useCallback } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { tekilBultenler } from '../store/selectors'
+import { seciliBultenState } from '../store'
+import Select from 'react-select'
+import Filtre from './Filtre'
 
 function HaberBulteniListesi(){
     const bultenler = useRecoilValue(tekilBultenler)
@@ -16,11 +15,13 @@ function HaberBulteniListesi(){
     }, [setSeciliBulten])
 
     return(
-        <Select
-            placeholder={(<div>Haber Bültenleri <FiltreGosterge>{bultenler && bultenler.length}</FiltreGosterge> </div>)}
-            options={bultenlerOption}
-            onChange={handleChange}
-        />
+        <Filtre etiket={bultenler && bultenler.length}>
+            <Select
+              placeholder='Haber Bültenleri'
+              options={bultenlerOption}
+              onChange={handleChange}
+            />
+        </Filtre>
     )
 }
 

@@ -1,18 +1,9 @@
+import React, { memo } from 'react'
+import { referanslarState, seciliCografiDuzeylerState } from '../store'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import Select from 'react-select'
+import Filtre from './Filtre'
 
-import React, {memo} from "react";
-import {referanslarState, seciliCografiDuzeylerState} from "../store";
-import {useSetRecoilState, useRecoilValue} from "recoil";
-import Select from 'react-select';
-import styled from "styled-components";
-import {AnaRenkler} from "@tuik/renkler";
-import {Tag} from "@blueprintjs/core";
-
-export const FiltreGosterge = styled(Tag)`
-  display: inline-block;
-  font-size: 1.2em;
-  color: ${AnaRenkler.beyaz};
-  padding-left: 0;
-`
 function CografiDuzeyListesi(){
     const referanslar = useRecoilValue(referanslarState)
     const setSecilenCografiDuzeyler = useSetRecoilState(seciliCografiDuzeylerState)
@@ -22,15 +13,15 @@ function CografiDuzeyListesi(){
         label:c.adi , value:c.id
     }))
     return(
-        <div>
+        <Filtre etiket={cografiDuzeyler && cografiDuzeyler.length}>
             <Select
-                closeMenuOnSelect={false}
-                placeholder={<div>Coğrafi Düzey <FiltreGosterge>{cografiDuzeyler && cografiDuzeyler.length}</FiltreGosterge></div>}
-                isMulti
-                options={cografiDuzeyler}
-                onChange={handleChange}
+              closeMenuOnSelect={false}
+              placeholder='Coğrafi Düzey'
+              isMulti
+              options={cografiDuzeyler}
+              onChange={handleChange}
             />
-        </div>
+        </Filtre>
     )
 
 }

@@ -1,10 +1,9 @@
-import React, {memo, useCallback} from "react";
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import {siraliKurumlar} from "../store/selectors";
-import {seciliKaynakKurumState} from "../store";
-import {FiltreGosterge} from "./CografiDuzeyListesi";
-import Select from "react-select";
-
+import React, { memo, useCallback } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { siraliKurumlar } from '../store/selectors'
+import { seciliKaynakKurumState } from '../store'
+import Select from 'react-select'
+import Filtre from './Filtre'
 
 function KaynakKurumListesi (){
     const kurumlar = useRecoilValue(siraliKurumlar)
@@ -16,11 +15,13 @@ function KaynakKurumListesi (){
         setSeciliKaynakKurum(selectedOption)
     } , [setSeciliKaynakKurum])
     return(
-        <Select
-            placeholder={(<div>Kaynak Kurum <FiltreGosterge>{kurumlar && kurumlar.length}</FiltreGosterge></div>)}
-            options={kurumlarOption}
-            onChange={handleChange}
-        />
+        <Filtre etiket={kurumlar && kurumlar.length}>
+            <Select
+              placeholder='Kaynak Kurum'
+              options={kurumlarOption}
+              onChange={handleChange}
+            />
+        </Filtre>
     )
 }
 export default memo(KaynakKurumListesi)

@@ -1,9 +1,8 @@
-import React, {memo, useCallback} from "react";
-import {referanslarState, seciliUretimSikliklariState} from "../store";
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import Select from "react-select";
-import {FiltreGosterge} from "./CografiDuzeyListesi";
-
+import React, { memo, useCallback } from 'react'
+import { referanslarState, seciliUretimSikliklariState } from '../store'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import Select from 'react-select'
+import Filtre from './Filtre'
 
 function UretimSikligiListesi(){
     const referanslar = useRecoilValue(referanslarState)
@@ -16,13 +15,15 @@ function UretimSikligiListesi(){
 
     const periyotlar = referanslar.PERIYOT && referanslar.PERIYOT.map(p => ({label:p.adi, value:p.id}))
     return(
-        <Select
-            closeMenuOnSelect={false}
-            placeholder={(<div>Üretim Sıklığı <FiltreGosterge>{periyotlar && periyotlar.length}</FiltreGosterge></div>)}
-            isMulti
-            options={periyotlar}
-            onChange={handleChange}
-        />
+        <Filtre etiket={periyotlar && periyotlar.length}>
+            <Select
+              closeMenuOnSelect={false}
+              placeholder='Üretim Sıklığı'
+              isMulti
+              options={periyotlar}
+              onChange={handleChange}
+            />
+        </Filtre>
     )
 }
 export default memo(UretimSikligiListesi)
