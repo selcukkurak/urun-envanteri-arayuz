@@ -25,15 +25,15 @@ const YanMenu = styled.div`
   left: 0;
   position: fixed;
   overflow-y: auto;
-  background-color: white;
-  border:1px solid ${Colors.LIGHT_GRAY3}
+  background-color: ${Colors.LIGHT_GRAY5};
+  border-right: 1px solid ${Colors.LIGHT_GRAY2}
 `
 const OrtaBolme = styled.div`;
   width: 100%;
   margin-top: 20px;
   margin-left: 320px;
   height: 100vh;
-  background-color:whitesmoke;
+  background-color: ${Colors.LIGHT_GRAY4};
 `
 
 function App() {
@@ -50,15 +50,15 @@ function App() {
         <YanMenu>
           <Filtreler />
         </YanMenu>
-          <OrtaBolme>
-            <Container>
-              <Row>
-                <Col sm={12}>
-                  <Listeler/>
-                </Col>
-              </Row>
-            </Container>
-          </OrtaBolme>
+        <OrtaBolme>
+          <Container>
+            <Row>
+              <Col sm={12}>
+                <Listeler/>
+              </Col>
+            </Row>
+          </Container>
+        </OrtaBolme>
       </Wrapper>
     </RecoilRoot>
   );
