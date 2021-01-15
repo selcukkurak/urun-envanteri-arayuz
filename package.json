@@ -1,6 +1,6 @@
 {
-  "name": "tuik-envanter",
-  "version": "0.1.0",
+  "name": "tuik-urun-envanteri-arayuz",
+  "version": "1.1.0",
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
@@ -21,7 +21,6 @@
     "react-select": "^3.1.1",
     "recoil": "0.0.10",
     "styled-components": "^5.2.1",
-    "typeface-roboto": "0.0.75",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

@@ -1,6 +1,5 @@
 
 import React, { memo, Suspense } from 'react'
-import 'typeface-roboto'
 import './App.css'
 import styled from 'styled-components'
 import { RecoilRoot } from 'recoil/dist'
