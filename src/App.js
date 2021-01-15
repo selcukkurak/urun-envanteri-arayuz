@@ -2,18 +2,20 @@
 import React, { memo, Suspense } from 'react'
 import './App.css'
 import styled from 'styled-components'
-import { RecoilRoot } from 'recoil/dist'
-import AnketLoader from "./envanter-rapor/loader/AnketLoader";
-import IdariKayitLoader from "./envanter-rapor/loader/IdariKayitLoader";
-import UrunLoader from "./envanter-rapor/loader/UrunLoader";
-import BultenLoader from "./envanter-rapor/loader/BultenLoader";
-import ReferansLoader from "./envanter-rapor/loader/ReferansLoader";
-import BirimLoader from "./envanter-rapor/loader/BirimLoader";
-import Filtreler from "./envanter-rapor/filtreler/Filtreler";
-import Listeler from "./envanter-rapor/listeler/Listeler";
-import HeaderBar from "./envanter-rapor/HeaderBar";
+import {RecoilRoot} from "recoil";
 import {Colors} from "@blueprintjs/core";
-
+import {Container, Row, Col} from 'react-grid-system'
+import UrunLoader from "./bilesenler/loader/UrunLoader";
+import BultenLoader from "./bilesenler/loader/BultenLoader";
+import ReferansLoader from "./bilesenler/loader/ReferansLoader";
+import BirimLoader from "./bilesenler/loader/BirimLoader";
+import AnketLoader from "./bilesenler/loader/AnketLoader";
+import IdariKayitLoader from "./bilesenler/loader/IdariKayitLoader";
+import HeaderBar from "./bilesenler/HeaderBar";
+import Filtreler from "./bilesenler/filtreler/Filtreler";
+import Listeler from "./bilesenler/listeler/Listeler";
+import UrunDetay from "./bilesenler/detaylar/UrunDetay";
+import DetayListesi from "./bilesenler/detaylar/DetayListesi";
 
 const Wrapper = styled.div`
     padding: 0;
@@ -30,9 +32,9 @@ const YanMenu = styled.div`
   border:1px solid ${Colors.LIGHT_GRAY3}
 `
 const OrtaBolme = styled.div`;
-  position: fixed;
   width: 100%;
-  margin:20px 320px;
+  margin-top: 20px;
+  margin-left: 320px;
   height: 100vh;
   background-color:whitesmoke;
 `
@@ -52,7 +54,14 @@ function App() {
               <Filtreler />
             </YanMenu>
               <OrtaBolme>
-                  <Listeler/>
+                  <Container>
+                      <Row>
+                          <Col sm={12}>
+                              <Listeler/>
+                          </Col>
+                      </Row>
+                  </Container>
+
               </OrtaBolme>
           </Wrapper>
       </RecoilRoot>
