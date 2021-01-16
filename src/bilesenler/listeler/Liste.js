@@ -88,7 +88,7 @@ function Liste (props) {
       <ListeGovde>
         <UrunListesi>
           <ReactList
-            type='variable'
+            type='uniform'
             itemRenderer={props.itemRenderer}
             length={props.length}/>
         </UrunListesi>
