@@ -32,7 +32,7 @@ function MetaveriDetayDialog () {
     handleClickOpen,
     handleClikClose
   ] = useMetaveriDetay()
-  console.log(selectedMetaveri)
+  console.debug(selectedMetaveri)
   const urun = useRecoilValue(seciliUrun)
   const groupByMetaveriler = groupBy(useMetaveriler(urun).flatMap(m => m), 'baslik')
   const seciliMetaveri = Object.values(groupByMetaveriler).find((metaveri, index) => index === selectedMetaveri)

@@ -30,7 +30,7 @@ function UrunDetay(){
     const urunuTemizle = () => {
         setSeciliUrun(null)
     }
-    console.log(urun)
+    console.debug(urun)
     if (!urun) return null
 
     const birim = birimler[urun.birimId]

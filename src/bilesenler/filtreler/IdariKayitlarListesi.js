@@ -9,7 +9,7 @@ function IdariKayitlarListesi () {
     const idariKayitlar = useRecoilValue(siraliIdariKayitlar)
     const setSeciliIdariKayit = useSetRecoilState(seciliIdariKayitState)
 
-    console.log(idariKayitlar)
+    console.debug(idariKayitlar)
 
     const idariKayitlarOption = idariKayitlar.map(idari => ({label:idari.adi, value:idari.id}))
     const handleChange = useCallback(selectedOption => {
