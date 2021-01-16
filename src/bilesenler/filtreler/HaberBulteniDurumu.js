@@ -11,8 +11,8 @@ const Wrapper = styled.div`
 `
 
 const Label = styled.div`
-    font-weight: bold;
-    color: ${Colors.DARK_GRAY3};
+    font-weight: 600;
+    color: ${Colors.GRAY1};
     flex: 1;
 `
 
