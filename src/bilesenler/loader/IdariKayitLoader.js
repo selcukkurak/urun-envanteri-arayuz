@@ -3,7 +3,7 @@ import Axios from 'axios'
 import {idariKayitlarState} from '../store'
 import { useSetRecoilState } from 'recoil'
 
-export default function () {
+function IdariKayitLoader () {
     const setIdariKayitlar = useSetRecoilState(idariKayitlarState)
 
     useEffect(() => {
@@ -13,3 +13,5 @@ export default function () {
 
     return null
 }
+
+export default IdariKayitLoader

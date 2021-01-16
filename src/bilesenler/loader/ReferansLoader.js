@@ -2,9 +2,8 @@ import Axios from 'axios'
 import { useEffect } from 'react'
 import { referanslarState } from '../store'
 import { useSetRecoilState } from 'recoil'
-import {useRecoilValue} from "recoil";
 
-export default function (props) {
+function ReferansLoader (props) {
   const setReferanslar = useSetRecoilState(referanslarState)
 
 
@@ -14,3 +13,5 @@ export default function (props) {
   }, [setReferanslar])
   return null
 }
+
+export default ReferansLoader

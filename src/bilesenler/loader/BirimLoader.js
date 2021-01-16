@@ -11,7 +11,7 @@ function birimAdiKucult (birim) {
   }
 }
 
-export default function () {
+function BirimLoader () {
   const setBirimler = useSetRecoilState(birimlerState)
 
   useEffect(() => {
@@ -21,3 +21,5 @@ export default function () {
 
   return null
 }
+
+export default BirimLoader
