@@ -1,6 +1,6 @@
-import React, { memo } from 'react'
+import React, { Fragment, memo } from 'react'
 import styled from 'styled-components'
-import { Button, Card, Colors, H5, Menu } from '@blueprintjs/core'
+import { Card, Colors, H5, Menu } from '@blueprintjs/core'
 import ReactList from 'react-list'
 import { AnaRenkler, BaslikRenkleri } from '@tuik/renkler'
 
@@ -41,6 +41,13 @@ const UrunListesi = styled(Menu)`
   height: 500px;
   overflow: auto;
 `
+const ToplamSayi = styled.div`
+  display: inline-block;
+  color: ${Colors.GRAY3};
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-left: 4px;
+`
 export const SayiGosterge = styled.div`
   display: inline-block;
   color: ${AnaRenkler.koyuKirmizi};
@@ -55,16 +62,24 @@ export const SayiGosterge = styled.div`
 `
 
 function Liste (props) {
-  console.log(props)
+  const {
+    urunler = [],
+    filtreliUrunler = []
+  } = props
+
   return (
     <div>
       <ListeBaslik>
         <SolaYasli>{props.title}</SolaYasli>
         <SagaYasli>
           <BaslikMetin>TOPLAM</BaslikMetin>
-          <SayiGosterge>{props.filtreliUrunler && props.filtreliUrunler.length}</SayiGosterge>
-          <Ayrac>/</Ayrac>
-          <SayiGosterge>{props.urunler && props.urunler.length}</SayiGosterge>
+          <SayiGosterge>{filtreliUrunler.length}</SayiGosterge>
+          {urunler.length !== filtreliUrunler.length && (
+            <Fragment>
+              <Ayrac>/</Ayrac>
+              <ToplamSayi>{urunler.length}</ToplamSayi>
+            </Fragment>
+          )}
         </SagaYasli>
       </ListeBaslik>
       <Card>
