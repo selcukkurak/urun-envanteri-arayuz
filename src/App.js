@@ -3,7 +3,6 @@ import './App.css'
 import styled from 'styled-components'
 import { RecoilRoot } from 'recoil'
 import { Colors } from '@blueprintjs/core'
-import { Col, Container, Row } from 'react-grid-system'
 import UrunLoader from './bilesenler/loader/UrunLoader'
 import BultenLoader from './bilesenler/loader/BultenLoader'
 import ReferansLoader from './bilesenler/loader/ReferansLoader'
@@ -28,9 +27,7 @@ const YanMenu = styled.div`
   background-color: ${Colors.LIGHT_GRAY5};
   border-right: 1px solid ${Colors.LIGHT_GRAY2}
 `
-const OrtaBolme = styled.div`;
-  width: 100%;
-  margin-top: 20px;
+const OrtaBolme = styled.div`
   margin-left: 320px;
   height: 100vh;
   background-color: ${Colors.LIGHT_GRAY4};
@@ -51,13 +48,7 @@ function App() {
           <Filtreler />
         </YanMenu>
         <OrtaBolme>
-          <Container>
-            <Row>
-              <Col sm={12}>
-                <Listeler/>
-              </Col>
-            </Row>
-          </Container>
+          <Listeler/>
         </OrtaBolme>
       </Wrapper>
     </RecoilRoot>
