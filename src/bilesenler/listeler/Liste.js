@@ -35,12 +35,6 @@ const Ayrac = styled.div`
   color: ${Colors.GRAY3};
   vertical-align: text-top;
 `
-
-const UrunListesi = styled(Menu)`
-  padding: 0;
-  height: 500px;
-  overflow: auto;
-`
 const ToplamSayi = styled.div`
   display: inline-block;
   color: ${Colors.GRAY3};
@@ -59,6 +53,15 @@ export const SayiGosterge = styled.div`
   &:last-child {
     margin-right: 0;
   }
+`
+
+const ListeGovde = styled(Card)`
+  padding: 0;
+`
+
+const UrunListesi = styled(Menu)`
+  height: 640px;
+  overflow-y: auto;
 `
 
 function Liste (props) {
@@ -82,14 +85,14 @@ function Liste (props) {
           )}
         </SagaYasli>
       </ListeBaslik>
-      <Card>
+      <ListeGovde>
         <UrunListesi>
           <ReactList
             type='variable'
             itemRenderer={props.itemRenderer}
             length={props.length}/>
         </UrunListesi>
-      </Card>
+      </ListeGovde>
     </div>
 
   )
