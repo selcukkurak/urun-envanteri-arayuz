@@ -17,6 +17,7 @@ function KaynakKurumListesi (){
     return(
         <Filtre etiket={kurumlar && kurumlar.length}>
             <Select
+              isClearable={true}
               placeholder='Kaynak Kurum'
               options={kurumlarOption}
               onChange={handleChange}

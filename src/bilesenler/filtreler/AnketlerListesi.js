@@ -17,6 +17,7 @@ function AnketlerListesi() {
     return(
         <Filtre etiket={anketler && anketler.length}>
             <Select
+              isClearable={true}
               className="basic-single"
               classNamePrefix="select"
               placeholder='Anketler'
