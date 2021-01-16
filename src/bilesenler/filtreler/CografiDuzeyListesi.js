@@ -13,7 +13,7 @@ function CografiDuzeyListesi(){
         label:c.adi , value:c.id
     }))
     return(
-        <Filtre etiket={cografiDuzeyler && cografiDuzeyler.length}>
+        <Filtre>
             <Select
               closeMenuOnSelect={false}
               placeholder='Coğrafi Düzey'

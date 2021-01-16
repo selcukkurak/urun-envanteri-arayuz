@@ -23,7 +23,9 @@ function Filtre (props) {
         {props.children}
       </LeftElement>
       <Etiket>
-        <Tag intent='danger'>{props.etiket}</Tag>
+        {props.etiket && (
+          <Tag intent='danger'>{props.etiket}</Tag>
+        )}
       </Etiket>
     </Wrapper>
   )

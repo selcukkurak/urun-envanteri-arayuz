@@ -15,7 +15,7 @@ function UretimSikligiListesi(){
 
     const periyotlar = referanslar.PERIYOT && referanslar.PERIYOT.map(p => ({label:p.adi, value:p.id}))
     return(
-        <Filtre etiket={periyotlar && periyotlar.length}>
+        <Filtre>
             <Select
               closeMenuOnSelect={false}
               placeholder='Üretim Sıklığı'
