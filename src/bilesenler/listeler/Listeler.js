@@ -24,6 +24,16 @@ const Wrapper = styled.div`
   padding: 70px 0 0;
 `
 
+const GostergeAlani = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const Gosterge = styled.div`
+  flex: 0 50%;
+  padding: 20px;
+`
+
 const AramaAlani = styled.div`
   margin-bottom: 48px;
 `
@@ -49,10 +59,6 @@ function Listeler () {
             <AramaAlani>
               <Arama onUrunAramaChange={onUrunAramaChange}/>
             </AramaAlani>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={5}>
             <Liste
               title={'İstatistiki Ürünler'}
               urunler={urunler}
@@ -79,18 +85,31 @@ function Listeler () {
               }}/>
           </Col>
           {!seciliUrun ? (
-            <Col md={6}>
-              <KaynakKurum filtreliKurumlar={filtreliKurumlar}/>
-              <Kurulus filtreliKuruluslar={filtreliKuruluslar}/>
-              <HaberBulteni filtreliBultenler={filtreliBultenler}/>
-              <Suspense fallback={(<div>Yükleniyor</div>)}>
-                <IdariKayit/>
-                <Anket/>
-              </Suspense>
-
+            <Col md={5}>
+              <GostergeAlani>
+                <Gosterge>
+                  <KaynakKurum filtreliKurumlar={filtreliKurumlar}/>
+                </Gosterge>
+                <Gosterge>
+                  <Kurulus filtreliKuruluslar={filtreliKuruluslar}/>
+                </Gosterge>
+                <Gosterge>
+                  <HaberBulteni filtreliBultenler={filtreliBultenler}/>
+                </Gosterge>
+                <Gosterge>
+                  <Suspense fallback={(<div>Yükleniyor</div>)}>
+                    <IdariKayit/>
+                  </Suspense>
+                </Gosterge>
+                <Gosterge>
+                  <Suspense fallback={(<div>Yükleniyor</div>)}>
+                    <Anket/>
+                  </Suspense>
+                </Gosterge>
+              </GostergeAlani>
             </Col>
           ) : (
-            <Col sm={6}>
+            <Col sm={7}>
               <UrunDetay/>
               <Suspense fallback={(<div>Yükleniyor...</div>)}>
                 <DetayListesi/>
