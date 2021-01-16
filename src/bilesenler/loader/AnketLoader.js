@@ -3,7 +3,7 @@ import Axios from 'axios'
 import {anketlerState} from '../store'
 import { useSetRecoilState } from 'recoil'
 
-export default function () {
+function AnketLoader () {
     const setAnketler = useSetRecoilState(anketlerState)
 
     useEffect(() => {
@@ -13,3 +13,5 @@ export default function () {
 
     return null
 }
+
+export default AnketLoader

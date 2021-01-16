@@ -25,7 +25,7 @@ async function urunleriGetir () {
      }))
 }
 
-export default function () {
+function UrunLoader () {
   const setUrunler = useSetRecoilState(urunlerState)
   useEffect(() => {
     urunleriGetir().then(response => setUrunler(response))
@@ -33,3 +33,5 @@ export default function () {
 
   return null
 }
+
+export default UrunLoader

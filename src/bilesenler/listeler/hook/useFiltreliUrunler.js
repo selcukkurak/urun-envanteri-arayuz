@@ -58,9 +58,10 @@ export default function useFiltreliUrunler (arananUrun) {
       return (idIceriyorMu(secilenUretimSikliklar, urun, 'periyot'))
         && (idIceriyorMu(secilenCografiDuzeyler, urun, 'cografiDuzey'))
         && (secilenUretimDurumu === null || secilenUretimDurumu === urun.uretiliyor)
-        && (secilenBirimler && secilenBirimler.length === 0 || secilenAltBirimler.includes(urun.birimId))
+        && ((secilenBirimler && secilenBirimler.length === 0) || secilenAltBirimler.includes(urun.birimId))
         && (!secilenKaynakKurum || urun.kurumlar.some(k => k.kurumId === secilenKaynakKurum.value))
         && (!secilenIdariKayit || urun.idariKayitlar.includes(secilenIdariKayit.value))
+        && (!secilenAnket || urun.anketler.includes(secilenAnket.value))
         && (!secilenKaynakKurulus || urun.kurulus.some(kurulus => kurulus.id === secilenKaynakKurulus.value))
         && (!arananUrun || urun.adi.toLowerCase().includes(arananUrun.toLowerCase()))
     })
@@ -73,6 +74,8 @@ export default function useFiltreliUrunler (arananUrun) {
     secilenBirimler,
     secilenKaynakKurum,
     secilenKaynakKurulus,
-    secilenUretimDurumu
+    secilenUretimDurumu,
+    secilenIdariKayit,
+    secilenAnket
   ])
 }

@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { bultenlerState } from '../store'
 import { useSetRecoilState } from 'recoil'
 
-export default function () {
+function BultenLoader () {
   const setBultenler = useSetRecoilState(bultenlerState)
 
   useEffect(() => {
@@ -13,3 +13,5 @@ export default function () {
 
   return null
 }
+
+export default BultenLoader
