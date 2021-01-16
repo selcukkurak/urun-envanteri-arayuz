@@ -26,7 +26,7 @@ function idIceriyorMu (dizi, nesne, key) {
   if (dizi && dizi.length === 0) return true
   else {
     const value = nesne[key]
-    console.log(dizi)
+    console.debug(dizi)
     return value && dizi &&  dizi.some(item => item.value === value.id)
   }
 }
@@ -53,7 +53,7 @@ export default function useFiltreliUrunler (arananUrun) {
 
 
     console.debug(secilenBirimler, secilenAltBirimler, secilenKaynakKurum, secilenKaynakKurulus)
-    console.log(secilenIdariKayit && urunler.filter(urun => urun.idariKayitlar.includes(secilenIdariKayit.value) ))
+    console.debug(secilenIdariKayit && urunler.filter(urun => urun.idariKayitlar.includes(secilenIdariKayit.value) ))
     return urunler.filter(urun => {
       return (idIceriyorMu(secilenUretimSikliklar, urun, 'periyot'))
         && (idIceriyorMu(secilenCografiDuzeyler, urun, 'cografiDuzey'))

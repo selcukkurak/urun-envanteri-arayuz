@@ -1,19 +1,17 @@
-import Sigma, { EdgeShapes, Filter, NodeShapes, RandomizeNodePositions, RelativeSize } from 'react-sigma'
+import Sigma, { EdgeShapes, Filter, RandomizeNodePositions, RelativeSize, SigmaEnableWebGL } from 'react-sigma'
 import { nodelaraCevir } from './urunler-util'
-import ForceLink from 'react-sigma/lib/ForceLink'
 import useFiltreliUrunler from '../listeler/hook/useFiltreliUrunler'
+import ForceLink from 'react-sigma/lib/ForceLink'
 
 const settings = {
   defaultNodeColor: '#ab2328',
   drawEdges: true,
-  clone: false,
-  animationsTime: 1000,
+  clone: true,
+  animationsTime: 3000,
   edgeColor: 'default',
   defaultEdgeColor: '#d79996',
   borderSize: 1,
   defaultNodeBorderColor: '#5b080b',
-  enableEdgeHovering: true,
-  edgeHoverExtremities: true,
   minArrowSize: 4
 }
 
@@ -21,7 +19,7 @@ function UrunlerGrafik (props) {
   const urunler = useFiltreliUrunler(null)
   console.debug('Ürünler', urunler)
 
-  if (!urunler) return <div>Yükleniyor...</div>
+  if (urunler.length === 0) return <div>Yükleniyor...</div>
 
   const urunGraph = nodelaraCevir(urunler)
   console.debug('Graph', urunGraph)
@@ -31,21 +29,15 @@ function UrunlerGrafik (props) {
   }
 
   return (
-    <Sigma renderer='canvas' graph={urunGraph} settings={settings} style={{ height: 'calc(100vh - 114px)', maxWidth: 'inherit' }}>
+    <Sigma renderer='webgl' graph={urunGraph} settings={settings} style={{ height: 'calc(100vh - 114px)', maxWidth: 'inherit' }}>
       <EdgeShapes default="arrow"/>
       <Filter nodesBy={filterNodes} />
       <RandomizeNodePositions>
         <ForceLink
-          background
-          barnesHutTheta={0.5}
-          barnesHutOptimize={true}
-          easing="cubicInOut"
-          edgeWeightInfluence={0}
-          gravity={1}
           linLogMode
-          randomize="locally"
           timeout={3000}
           worker
+          backrgound
         />
         <RelativeSize initialSize={32} />
       </RandomizeNodePositions>

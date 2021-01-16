@@ -36,7 +36,7 @@ export default function HaberBulteniDurumu(){
         }
     }
 
-    console.log(secili)
+    console.debug(secili)
     return(
         <Wrapper>
             <Label>Haber Bülteni:</Label>

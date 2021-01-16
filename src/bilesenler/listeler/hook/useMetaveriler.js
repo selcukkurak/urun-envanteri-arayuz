@@ -13,7 +13,6 @@ export default function useMetaveriler(seciliUrun) {
             Axios.get(`/api/bultenler/metaveri/${bultenIdler}`)
                 .then(response => setMetaveriler(response.data))
         }
-        console.log()
     }, [seciliUrun])
     return metaveriler
 }
