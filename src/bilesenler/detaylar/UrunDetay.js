@@ -37,8 +37,8 @@ function UrunDetay(){
     const daire = birimler[birim.ustBirimId]
     return(
         <Wrapper>
-            <Card style={{marginTop:"15%"}}>
-                <Button minimal intent={"danger"} text={"Seçilen Ürünü Kaldır"} onClick={urunuTemizle}/>
+            <Card>
+                <Button minimal intent={"danger"} text={"Kapat"} icon='cross' onClick={urunuTemizle}/>
                 <CardHeader>
                     <h5 className="bp3-heading">
                         <Header>{urun.adi}</Header>
