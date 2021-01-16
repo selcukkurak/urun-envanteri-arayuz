@@ -1,5 +1,4 @@
 import React, { memo } from 'react'
-import './App.css'
 import styled from 'styled-components'
 import { RecoilRoot } from 'recoil'
 import { Colors } from '@blueprintjs/core'
@@ -12,6 +11,7 @@ import IdariKayitLoader from './bilesenler/loader/IdariKayitLoader'
 import HeaderBar from './bilesenler/HeaderBar'
 import Filtreler from './bilesenler/filtreler/Filtreler'
 import Listeler from './bilesenler/listeler/Listeler'
+import GlobalStyle from './bilesenler/globalStiller'
 
 const Wrapper = styled.div`
     padding: 0;
@@ -30,12 +30,12 @@ const YanMenu = styled.div`
 const OrtaBolme = styled.div`
   margin-left: 320px;
   height: 100vh;
-  background-color: ${Colors.LIGHT_GRAY4};
 `
 
 function App() {
   return (
     <RecoilRoot>
+      <GlobalStyle/>
       <UrunLoader />
       <BultenLoader />
       <ReferansLoader />
