@@ -1,10 +1,9 @@
-import React, {memo, useCallback} from "react";
-import {useSetRecoilState, useRecoilValue} from "recoil";
-import {siraliKuruluslar} from "../store/selectors";
-import {seciliKaynakKurulusState} from "../store";
-import {FiltreGosterge} from "./CografiDuzeyListesi";
-import Select from "react-select";
-
+import React, { memo, useCallback } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { siraliKuruluslar } from '../store/selectors'
+import { seciliKaynakKurulusState } from '../store'
+import Select from 'react-select'
+import Filtre from './Filtre'
 
 function KurulusListesi (){
     const kuruluslar = useRecoilValue(siraliKuruluslar)
@@ -15,11 +14,13 @@ function KurulusListesi (){
         setSeciliKurulus(selectionOption)
     }, [setSeciliKurulus])
     return(
-        <Select
-            placeholder={(<div>Paylaşılan Kuruluş <FiltreGosterge>{kuruluslar && kuruluslar.length}</FiltreGosterge></div>)}
-            options={kuruluslarOption}
-            onChange={handleChange}
-        />
+        <Filtre etiket={kuruluslar && kuruluslar.length}>
+            <Select
+              placeholder='Paylaşılan Kuruluş'
+              options={kuruluslarOption}
+              onChange={handleChange}
+            />
+        </Filtre>
     )
 }
 export default memo(KurulusListesi)

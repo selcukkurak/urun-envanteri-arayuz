@@ -1,26 +1,55 @@
-import React, {useCallback} from "react";
-import {Secenek} from "./UretimDurumu";
-import {useRecoilState} from "recoil";
-import {seciliHaberBulteniDurumuState} from "../store";
-import {Label} from "@blueprintjs/core";
+import React from 'react'
+import { useRecoilState } from 'recoil'
+import { seciliHaberBulteniDurumuState } from '../store'
+import { Colors, Tag } from '@blueprintjs/core'
+import styled from 'styled-components'
 
-const durumlar = [
-    {id:0, adi:"Var"},
-    {id:1, adi: "Yok"}
+const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 52px;
+`
+
+const Label = styled.div`
+    font-weight: 600;
+    color: ${Colors.GRAY1};
+    flex: 1;
+`
+
+const Secenek = styled(Tag)`
+  margin-left: 12px;
+`
+
+const secenekler = [
+    {id:0, durum: true, adi:"Var"},
+    {id:1, durum: false, adi: "Yok"}
 ]
 export default function HaberBulteniDurumu(){
-    const [seciliHaberBulteniDurumu, setSeciliHaberBulteniDurumu] = useRecoilState(seciliHaberBulteniDurumuState)
+    const [secili, setSecili] = useRecoilState(seciliHaberBulteniDurumuState)
 
-    const handleClickHaberBulteniDurumuItem = useCallback((event, durumu) => {
-        setSeciliHaberBulteniDurumu(durumu)
-    }, [setSeciliHaberBulteniDurumu])
-    console.log(seciliHaberBulteniDurumu)
+    const handleClickHaberBulteniDurumuItem = (event, secenek) => {
+        if (!secili || secenek.durum !== secili.durum) {
+            setSecili(secenek)
+        }
+        else {
+            setSecili(null)
+        }
+    }
+
+    console.log(secili)
     return(
-        <div>
-            <Label style={{clear:"both", float:"left"}}>Haber Bülteni:</Label>
-            {durumlar.map(durum => (
-                <Secenek active={seciliHaberBulteniDurumu} onClick={(event) => handleClickHaberBulteniDurumuItem(event, durum.adi)} key={durum.id}>{durum.adi}</Secenek>
+        <Wrapper>
+            <Label>Haber Bülteni:</Label>
+            {secenekler.map(secenek => (
+                <Secenek
+                  minimal={!secili || secili.durum !== secenek.durum}
+                  interactive
+                  intent='danger'
+                  onClick={(event) => handleClickHaberBulteniDurumuItem(event, secenek)}
+                  key={secenek.id}>
+                    {secenek.adi}
+                </Secenek>
             ))}
-        </div>
+        </Wrapper>
     )
 }

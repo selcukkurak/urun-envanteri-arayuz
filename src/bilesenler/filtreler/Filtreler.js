@@ -1,36 +1,35 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
-import AnketlerListesi from "./AnketlerListesi";
-import UretimSikligiListesi from "./UretimSikligiListesi";
-import CografiDuzeyListesi from "./CografiDuzeyListesi";
-import UretimDurumu from "./UretimDurumu";
-import HaberBulteniDurumu from "./HaberBulteniDurumu";
-import BirimlerListesi from "./BirimlerListesi";
-import KaynakKurumListesi from "./KaynakKurumListesi";
-import KurulusListesi from "./KurulusListesi";
-import HaberBulteniListesi from "./HaberBulteniListesi";
-import IdariKayitlarListesi from "./IdariKayitlarListesi";
+import AnketlerListesi from './AnketlerListesi'
+import UretimSikligiListesi from './UretimSikligiListesi'
+import CografiDuzeyListesi from './CografiDuzeyListesi'
+import UretimDurumu from './UretimDurumu'
+import HaberBulteniDurumu from './HaberBulteniDurumu'
+import BirimlerListesi from './BirimlerListesi'
+import KaynakKurumListesi from './KaynakKurumListesi'
+import KurulusListesi from './KurulusListesi'
+import HaberBulteniListesi from './HaberBulteniListesi'
+import IdariKayitlarListesi from './IdariKayitlarListesi'
+import { AnaRenkler } from '@tuik/renkler'
+import { H4 } from '@blueprintjs/core'
 
 const Wrapper = styled.div`
-  padding: 20px 12px 12px;
+  padding: 70px 12px 12px;
 `
 
-const Baslik = styled.p`
-  color: black;
-  padding: 40px 4px;
-  font-size: 1.2em;
+const Baslik = styled(H4)`
+  color: ${AnaRenkler.koyuKirmizi};
+  margin-bottom: 20px;
 `
 
 const Row = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 `
 
 function Filtreler () {
     return (
         <Wrapper>
-            <Baslik>
-                FİLTRELER
-            </Baslik>
+            <Baslik>FİLTRELER</Baslik>
             <Row>
                 <UretimSikligiListesi />
             </Row>

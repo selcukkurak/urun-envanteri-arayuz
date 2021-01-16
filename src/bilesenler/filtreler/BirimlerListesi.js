@@ -1,10 +1,9 @@
-import React, {memo, useCallback} from 'react'
+import React, { memo, useCallback } from 'react'
 import { seciliBirimlerState } from '../store'
-import { useSetRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { siraliUrunDaireleri } from '../store/selectors'
-import Select from 'react-select';
-import {FiltreGosterge} from "./CografiDuzeyListesi";
-
+import Select from 'react-select'
+import Filtre from './Filtre'
 
 function BirimlerListesi () {
     const setSeciliBirimler = useSetRecoilState(seciliBirimlerState)
@@ -15,14 +14,14 @@ function BirimlerListesi () {
     }, [setSeciliBirimler])
     const optionDaireler = daireler.map(birim => ({label:birim.adi, value:birim.id}))
     return (
-        <div style={{clear:"both"}}>
+        <Filtre etiket={daireler && daireler.length}>
             <Select
-                placeholder={(<div>Üretici Birimler <FiltreGosterge>{daireler && daireler.length}</FiltreGosterge></div>)}
-                isMulti
-                options={optionDaireler}
-                onChange={handleChange}
+              placeholder='Üretici Birimler'
+              isMulti
+              options={optionDaireler}
+              onChange={handleChange}
             />
-        </div>
+        </Filtre>
 
     )
 }

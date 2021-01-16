@@ -1,37 +1,54 @@
-import React, {useCallback} from "react";
-import styled from "styled-components";
-import {useSetRecoilState} from "recoil";
-import {seciliUretimDurumuState} from "../store";
-import {Label, Tag} from "@blueprintjs/core";
+import React from 'react'
+import styled from 'styled-components'
+import { useRecoilState } from 'recoil'
+import { seciliUretimDurumuState } from '../store'
+import { Colors, Tag } from '@blueprintjs/core'
 
-export const Secenek = styled(Tag)`
-  float: left;
-  height: 20px;
-  margin-left:15px;
-  
-  &:hover {
-    cursor:pointer;
-  }
-;
+const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 52px;
+`
+
+const Label = styled.div`
+    font-weight: 600;
+    color: ${Colors.GRAY1};
+    flex: 1;
+`
+
+const Secenek = styled(Tag)`
+  margin-left: 12px;
 `
 
 const secenekler = [
-    {id:0, durumu:true, adi:"Evet"},
-    {id:1, durumu:false, adi: "Hayır"}
+    {id:0, durum: true, adi:"Evet"},
+    {id:1, durum: false, adi: "Hayır"}
 ]
+
 export default function UretimDurumu(){
-    const setSeciliUretimDurumu = useSetRecoilState(seciliUretimDurumuState)
+    const [secili, setSecili] = useRecoilState(seciliUretimDurumuState)
 
-    const handleClickUretimDurumuItem = useCallback((event,index) => {
-        setSeciliUretimDurumu(index);
-    }, [setSeciliUretimDurumu])
+    const handleClickUretimDurumuItem = (event, secenek) => {
+        if (!secili || secenek.durum !== secili.durum) {
+            setSecili(secenek)
+        }
+        else {
+            setSecili(null)
+        }
+    }
     return(
-        <div>
-            <Label style={{float:"left"}}>Üretiliyor:</Label>
+        <Wrapper>
+            <Label>Üretiliyor:</Label>
             {secenekler.map(secenek => (
-                <Secenek onClick={(event) =>handleClickUretimDurumuItem(event, secenek.durumu)} key={secenek.id}>{secenek.adi}</Secenek>
+                <Secenek
+                  minimal={!secili || secili.durum !== secenek.durum}
+                  interactive
+                  intent='danger'
+                  onClick={(event) => handleClickUretimDurumuItem(event, secenek)}
+                  key={secenek.id}>
+                    {secenek.adi}
+                </Secenek>
             ))}
-        </div>
-
+        </Wrapper>
     )
 }
