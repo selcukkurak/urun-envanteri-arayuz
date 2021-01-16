@@ -17,6 +17,7 @@ function HaberBulteniListesi(){
     return(
         <Filtre etiket={bultenler && bultenler.length}>
             <Select
+              isClearable={true}
               placeholder='Haber Bültenleri'
               options={bultenlerOption}
               onChange={handleChange}

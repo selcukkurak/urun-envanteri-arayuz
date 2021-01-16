@@ -89,6 +89,8 @@ function Liste (props) {
         <UrunListesi>
           <ReactList
             type='uniform'
+            minSize={30}
+            pageSize={20}
             itemRenderer={props.itemRenderer}
             length={props.length}/>
         </UrunListesi>

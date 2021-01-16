@@ -16,6 +16,7 @@ function KurulusListesi (){
     return(
         <Filtre etiket={kuruluslar && kuruluslar.length}>
             <Select
+              isClearable={true}
               placeholder='Paylaşılan Kuruluş'
               options={kuruluslarOption}
               onChange={handleChange}

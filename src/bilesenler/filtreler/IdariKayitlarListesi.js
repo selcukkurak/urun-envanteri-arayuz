@@ -18,6 +18,7 @@ function IdariKayitlarListesi () {
     return (
         <Filtre etiket={idariKayitlar && idariKayitlar.length}>
             <Select
+              isClearable={true}
               placeholder='İdari Kayıtlar'
               options={idariKayitlarOption}
               onChange={handleChange}

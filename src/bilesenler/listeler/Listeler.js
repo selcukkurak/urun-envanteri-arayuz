@@ -1,4 +1,4 @@
-import React, { Fragment, memo, Suspense } from 'react'
+import React, { memo, Suspense } from 'react'
 import useUrunler from './hook/useUrunler'
 import { useRecoilValue } from 'recoil'
 import { siraliUrunler } from '../store/selectors'
@@ -14,7 +14,7 @@ import Kurulus from './Kurulus'
 import HaberBulteni from './HaberBulteni'
 import IdariKayit from './IdariKayit'
 import Anket from './Anket'
-import { AnketIkon, IdariKayitIkon } from './ikonlar'
+import { Ikonlar } from './ikonlar'
 import { seciliUrunState } from '../store'
 import UrunDetay from '../detaylar/UrunDetay'
 import DetayListesi from '../detaylar/DetayListesi'
@@ -74,12 +74,7 @@ function Listeler () {
                     selected={selectedUrunKod === urun.id}
                     onClick={(event) => handleClickIstatistikiUrunItem(event, urun.id)}
                     text={urun.adi}
-                    rightItems={(
-                      <div style={{ flex: 1 }}>
-                        {urun.sayilar.anket !== 0 && <AnketIkon/>}
-                        {urun.sayilar.idariKayit !== 0 && <IdariKayitIkon/>}
-                      </div>
-                    )}
+                    rightItems={selectedUrunKod !== urun.id && <Ikonlar sayilar={urun.sayilar} bultenler={urun.bultenler} />}
                   />
                 )
               }}/>
