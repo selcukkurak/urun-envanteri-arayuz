@@ -5,11 +5,11 @@ export function nodelaraCevir (urunler) {
   }))
 
   const edges = urunler.flatMap(urun => {
-    const source = urun.id
+    const target = urun.id
     return urun.urunler.map(id => ({
-      id: `edge-${source}-${id}`,
-      source,
-      target: id
+      id: `edge-${target}-${id}`,
+      source: id,
+      target
     }))
   }).filter(edge => edge.source !== edge.target)
 
