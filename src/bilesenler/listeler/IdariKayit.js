@@ -1,20 +1,21 @@
 import React, { memo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { seciliUrunDetay, siraliIdariKayitlar } from '../store/selectors'
-import { SayiGosterge } from './Liste'
-import { Card } from '@blueprintjs/core'
+import { siraliIdariKayitlar } from '../store/selectors'
+import Gosterge from './Gosterge'
 
 function IdariKayit (props) {
   const idariKayitlar = useRecoilValue(siraliIdariKayitlar)
-  const urun = useRecoilValue(seciliUrunDetay)
+  let toplam = 0;
+  const idariKayitToplam = props.sayilar.map((sayi)=>toplam+=Number(sayi.idariKayit));
 
   return (
-    <Card>
-      <SayiGosterge>{urun ? urun.idariKayitlar.length : 0}</SayiGosterge>
-      /
-      <SayiGosterge>{idariKayitlar.length}</SayiGosterge>
-      İDARİ KAYIT
-    </Card>
+    <Gosterge
+      toplam={idariKayitlar}
+      filtreli={idariKayitToplam[idariKayitToplam.length-1]}
+      filtreliText="Ürünlerin İçerdiği"
+      toplamText="Toplam"
+      baslik="İdari Kayıt"
+    />
 
   )
 }
