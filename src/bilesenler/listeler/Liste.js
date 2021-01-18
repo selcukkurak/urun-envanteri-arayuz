@@ -42,7 +42,7 @@ const ToplamSayi = styled.div`
   font-size: 1.2em;
   margin-left: 4px;
 `
-export const SayiGosterge = styled.div`
+const SayiGosterge = styled.div`
   display: inline-block;
   color: ${AnaRenkler.koyuKirmizi};
   font-weight: 600;
