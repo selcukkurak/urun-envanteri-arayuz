@@ -80,7 +80,7 @@ function Listeler () {
                 active={gorselAcik}
                 onClick={handleGorselButonClick}
                 icon='graph'>
-                Ürün Bağlantılarını Göster
+                  {gorselAcik ? "Ürün Bağlantılarını Gizle" : "Ürün Bağlantılarını Göster"}
               </Button>
             </SekmeAlani>
           </Col>
