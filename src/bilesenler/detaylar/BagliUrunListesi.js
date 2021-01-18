@@ -8,7 +8,7 @@ const MenuItemStyled = styled(MenuItem)`
   padding-top: 5px;
   color:#5A6F7B;
   text-decoration: underline;
-  font-size: 0.7em;
+  font-size: 0.9em;
 `
 
 export default function BagliUrunListesi(props){
