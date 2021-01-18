@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import {Container, Row, Col} from 'react-grid-system'
-import {Button, Classes, Dialog, Divider, HTMLTable} from "@blueprintjs/core";
+import { Classes, Drawer, Divider, HTMLTable} from "@blueprintjs/core";
 import {siraliKurumlar} from "../store/selectors";
 import {useRecoilValue} from "recoil";
+import { SutunBaslik, SutunIcerik } from './AnketDetayDialog'
 
 
-const GridDivider = props => {
+const GridDivider = () => {
     return (
         <Row>
             <Col sm={12}>
@@ -14,7 +15,7 @@ const GridDivider = props => {
         </Row>
     )
 }
-export default function IdariKayitDialog(props){
+export default function IdariKayitDrawer(props){
     const {idariKayitValue} = props
     const [open, setOpen] = React.useState(false)
     const [, setSelectedItem] = useState(null)
@@ -38,69 +39,72 @@ export default function IdariKayitDialog(props){
                     </Col>
                 </Row>
             </Container>
-            <Dialog
+            <Drawer
                 isOpen={open}
                 icon="info-sign"
                 onClose={handleClose}
                 title={idariKayitValue.adi}
             >
-                <div className={Classes.DIALOG_BODY}>
+                <div className={Classes.DRAWER_BODY}>
                     <Container>
                         <Row>
-                            <Col sm={3}>İçerik:</Col>
-                            <Col sm={3}>{idariKayitValue.icerik}</Col>
-                            <Col sm={3}>Kaynak Kurum:</Col>
-                            <Col sm={3}>{kurum && kurum.adi}</Col>
+                            <SutunBaslik sm={3}>İçerik:</SutunBaslik>
+                            <SutunIcerik sm={9}>{idariKayitValue.icerik}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Kaynak Birim:</Col>
-                            <Col sm={9}>{idariKayitValue.kaynakBirim}</Col>
+                            <SutunBaslik sm={3}>Kaynak Kurum:</SutunBaslik>
+                            <SutunIcerik sm={9}>{kurum && kurum.adi}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Yasal Hükümler:</Col>
-                            <Col sm={3}>{idariKayitValue.yasalHukum}</Col>
+                            <SutunBaslik sm={3}>Kaynak Birim:</SutunBaslik>
+                            <SutunIcerik sm={9}>{idariKayitValue.kaynakBirim}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Veri Biçimi:</Col>
-                            <Col sm={3}>{idariKayitValue.bicim && idariKayitValue.bicim.adi}</Col>
-                            <Col sm={3}>Düzey:</Col>
-                            <Col sm={3}>{idariKayitValue.veriDuzeyi && idariKayitValue.veriDuzeyi.adi}</Col>
+                            <SutunBaslik sm={3}>Yasal Hükümler:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.yasalHukum}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Veri Talep Biçimi:</Col>
-                            <Col sm={3}>{idariKayitValue.talepBicimi && idariKayitValue.talepBicimi.adi}</Col>
-                            <Col sm={3}>Transfer Sıklık:</Col>
-                            <Col sm={3}>{idariKayitValue.transferPeriyot && idariKayitValue.transferPeriyot.adi}</Col>
+                            <SutunBaslik sm={3}>Veri Biçimi:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.bicim && idariKayitValue.bicim.adi}</SutunIcerik>
+                            <SutunBaslik sm={3}>Düzey:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.veriDuzeyi && idariKayitValue.veriDuzeyi.adi}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Aktarım Türü:</Col>
-                            <Col sm={3}>{idariKayitValue.aktarimTuru && idariKayitValue.aktarimTuru.adi}</Col>
-                            <Col sm={3}>Transfer Sorumlu Birim:</Col>
-                            <Col sm={3}>{idariKayitValue.transferdenSorumluBirim}</Col>
+                            <SutunBaslik sm={3}>Veri Talep Biçimi:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.talepBicimi && idariKayitValue.talepBicimi.adi}</SutunIcerik>
+                            <SutunBaslik sm={3}>Transfer Sıklık:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.transferPeriyot && idariKayitValue.transferPeriyot.adi}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Hedef TÜİK Veritabanı:</Col>
-                            <Col sm={3}>{idariKayitValue.veritabani}</Col>
-                            <Col sm={3}>Hedef TÜİK Şema:</Col>
-                            <Col sm={3}>{idariKayitValue.sema}</Col>
+                            <SutunBaslik sm={3}>Aktarım Türü:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.aktarimTuru && idariKayitValue.aktarimTuru.adi}</SutunIcerik>
+                            <SutunBaslik sm={3}>Transfer Sorumlu Birim:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.transferdenSorumluBirim}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>İletişim E-posta Grubu:</Col>
-                            <Col sm={9}>{idariKayitValue.epostaGruplari}</Col>
+                            <SutunBaslik sm={3}>Hedef TÜİK Veritabanı:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.veritabani}</SutunIcerik>
+                            <SutunBaslik sm={3}>Hedef TÜİK Şema:</SutunBaslik>
+                            <SutunIcerik sm={3}>{idariKayitValue.sema}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>İletişim:</Col>
+                            <SutunBaslik sm={3}>İletişim E-posta Grubu:</SutunBaslik>
+                            <SutunIcerik sm={9}>{idariKayitValue.epostaGruplari}</SutunIcerik>
+                        </Row>
+                        <GridDivider/>
+                        <Row>
+                            <SutunBaslik sm={3}>İletişim:</SutunBaslik>
                         </Row>
                         <Row>
-                            <Col sm={12}>
+                            <SutunIcerik sm={12}>
                                 <HTMLTable>
                                     <thead>
                                         <tr>
@@ -121,14 +125,14 @@ export default function IdariKayitDialog(props){
                                     ))}
                                     </tbody>
                                 </HTMLTable>
-                            </Col>
+                            </SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>
-                            <Col sm={3}>Kurum İçi İletişim:</Col>
+                            <SutunBaslik sm={3}>Kurum İçi İletişim:</SutunBaslik>
                         </Row>
                         <Row>
-                            <Col sm={12}>
+                            <SutunIcerik sm={12}>
                                 <HTMLTable>
                                     <thead>
                                     <tr>
@@ -149,16 +153,11 @@ export default function IdariKayitDialog(props){
                                     ))}
                                     </tbody>
                                 </HTMLTable>
-                            </Col>
+                            </SutunIcerik>
                         </Row>
                     </Container>
                 </div>
-                <div className={Classes.DIALOG_FOOTER}>
-                    <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-                        <Button onClick={handleClose}>Kapat</Button>
-                    </div>
-                </div>
-            </Dialog>
+            </Drawer>
         </div>
 
 

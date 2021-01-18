@@ -1,7 +1,25 @@
 import React from "react";
 import {Container, Row, Col} from 'react-grid-system'
-import {Button, Classes, Dialog, Divider} from "@blueprintjs/core";
-export default function AnketDetayDialog(props){
+import {Classes, Drawer, Divider} from "@blueprintjs/core";
+import styled from 'styled-components'
+
+const Icerik = styled.div`
+  margin-top: 16px;
+`
+export const SutunBaslik = styled(Col)`
+  font-size: 0.9em;
+  font-weight: bold;
+  color:black;
+  padding-top: 10px;
+`
+
+export const SutunIcerik = styled(Col)`
+  font-size: 0.9em;
+  color:black;
+  padding-top: 10px;
+`
+
+export default function AnketDetayDrawer(props){
     const {anketValue} = props
     const [open, setOpen] = React.useState(false);
 
@@ -26,59 +44,56 @@ export default function AnketDetayDialog(props){
                      sm={12}>{anketValue.adi}</Col>
             </Row>
         </Container>
-        <Dialog
+        <Drawer
             isOpen={open}
             icon="info-sign"
             onClose={handleClose}
             title={anketValue.adi}
         >
-            <div className={Classes.DIALOG_BODY}>
+            <Icerik>
+              <div className={Classes.DRAWER_BODY}>
                 <Container>
-                    <Row>
-                        <Col sm={3}>Periyodu:</Col>
-                        <Col sm={3}>{anketValue.periyot ? anketValue.periyot.adi : '-'}</Col>
-                        <Col sm={3}>Veri Düzeyi:</Col>
-                        <Col sm={3}>{anketValue.birimDuzeyi ? anketValue.birimDuzeyi.adi : '-'}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={12}>
-                            <Divider/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={3}>Örneklem Boyutu:</Col>
-                        <Col sm={3}>{anketValue.orneklemSayisi}</Col>
-                        <Col sm={3}>Coğrafi Düzeyi:</Col>
-                        <Col sm={3}>{anketValue.cografiDuzey ? anketValue.cografiDuzey.adi : '-'}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={12}>
-                            <Divider/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={3}>Şeması:</Col>
-                        <Col sm={3}>{anketValue.sema}</Col>
-                        <Col sm={3}>Üst Durumu:</Col>
-                        <Col sm={3}>{ustDurumu}</Col>
-                    </Row>
-                    <Row>
-                        <Col sm={12}>
-                            <Divider/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={3}>Harzemli Durumu:</Col>
-                        <Col sm={3}>{harzemliDurumu}</Col>
-                    </Row>
+                  <Row>
+                    <SutunBaslik sm={3}>Periyodu:</SutunBaslik>
+                    <SutunIcerik sm={3}>{anketValue.periyot ? anketValue.periyot.adi : '-'}</SutunIcerik>
+                    <SutunBaslik sm={3}>Veri Düzeyi:</SutunBaslik>
+                    <SutunIcerik sm={3}>{anketValue.birimDuzeyi ? anketValue.birimDuzeyi.adi : '-'}</SutunIcerik>
+                  </Row>
+                  <Row>
+                    <Col sm={12}>
+                      <Divider/>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <SutunBaslik sm={3}>Örneklem Boyutu:</SutunBaslik>
+                    <SutunIcerik sm={3}>{anketValue.orneklemSayisi}</SutunIcerik>
+                    <SutunBaslik sm={3}>Coğrafi Düzeyi:</SutunBaslik>
+                    <SutunIcerik sm={3}>{anketValue.cografiDuzey ? anketValue.cografiDuzey.adi : '-'}</SutunIcerik>
+                  </Row>
+                  <Row>
+                    <Col sm={12}>
+                      <Divider/>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <SutunBaslik sm={3}>Şeması:</SutunBaslik>
+                    <SutunIcerik sm={3}>{anketValue.sema}</SutunIcerik>
+                    <SutunBaslik sm={3}>Üst Durumu:</SutunBaslik>
+                    <SutunIcerik sm={3}>{ustDurumu}</SutunIcerik>
+                  </Row>
+                  <Row>
+                    <Col sm={12}>
+                      <Divider/>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <SutunBaslik sm={3}>Harzemli Durumu:</SutunBaslik>
+                    <SutunIcerik sm={3}>{harzemliDurumu}</SutunIcerik>
+                  </Row>
                 </Container>
-            </div>
-            <div className={Classes.DIALOG_FOOTER}>
-                <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-                    <Button onClick={handleClose}>Kapat</Button>
-                </div>
-            </div>
-        </Dialog>
+              </div>
+            </Icerik>
+        </Drawer>
     </div>
     )
 }
