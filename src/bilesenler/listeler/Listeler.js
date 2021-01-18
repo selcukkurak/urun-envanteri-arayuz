@@ -129,12 +129,12 @@ function Listeler () {
                   </Gosterge>
                   <Gosterge>
                     <Suspense fallback={(<div>Yükleniyor</div>)}>
-                      <IdariKayit/>
+                      <IdariKayit sayilar={filtreliUrunler.map(urun => urun.sayilar)}/>
                     </Suspense>
                   </Gosterge>
                   <Gosterge>
                     <Suspense fallback={(<div>Yükleniyor</div>)}>
-                      <Anket/>
+                      <Anket sayilar={filtreliUrunler.map(urun => urun.sayilar)}/>
                     </Suspense>
                   </Gosterge>
                 </GostergeAlani>
