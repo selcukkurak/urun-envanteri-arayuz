@@ -1,12 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import AnketDetayDialog from "./AnketDetayDialog";
 
 
 export default function DetayAnketlerListesi(props){
-    const [, setSelectedItem] = useState(null)
-    const handleClickItem = (event,index) => {
-        setSelectedItem(index);
-    }
 
     return(
         <div>

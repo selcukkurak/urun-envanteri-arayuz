@@ -1,5 +1,4 @@
-import React,{useState} from "react";
-import {Menu, MenuItem} from "@blueprintjs/core";
+import React from "react";
 import IdariKayitDialog from "./IdariKayitDialog";
 
 

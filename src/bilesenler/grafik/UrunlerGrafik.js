@@ -1,4 +1,4 @@
-import Sigma, { EdgeShapes, Filter, RandomizeNodePositions, RelativeSize, SigmaEnableWebGL } from 'react-sigma'
+import Sigma, { EdgeShapes, Filter, RandomizeNodePositions, RelativeSize } from 'react-sigma'
 import { nodelaraCevir } from './urunler-util'
 import useFiltreliUrunler from '../listeler/hook/useFiltreliUrunler'
 import ForceLink from 'react-sigma/lib/ForceLink'

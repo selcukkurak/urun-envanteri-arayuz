@@ -1,10 +1,9 @@
 import React,{memo} from "react";
 import styled from "styled-components";
 import {BaslikRenkleri} from '@tuik/renkler'
-import {seciliUrunDetay, siraliKurumlar, tekilBultenler} from "../store/selectors";
+import {seciliUrunDetay, tekilBultenler} from "../store/selectors";
 import {useRecoilValue} from "recoil";
-import {Card, HTMLTable, Menu, MenuItem} from "@blueprintjs/core";
-import {seciliUrunState, urunlerState} from "../store";
+import {Card, HTMLTable} from "@blueprintjs/core";
 import BagliUrunListesi from "./BagliUrunListesi";
 import DetayAnketlerListesi from "./DetayAnketlerListesi";
 import DetayIdariKayitListesi from "./DetayIdariKayitListesi";
@@ -17,9 +16,6 @@ const Row = styled.div`
   margin-bottom: 12px;
 `
 
-const Header = styled.div`
-  color: ${BaslikRenkleri.gri};
-`
 
 const SubHeader = styled.div`
   font-weight: bold;
@@ -50,7 +46,7 @@ function DetayListesi(){
                                     <SubHeader>Haber Bültenleri</SubHeader>
                                     {urunBultenleri.map(bulten => (
                                         <Row key={bulten.id}>
-                                            <a href={bulten.sonYayin.url} target='_blank' title={bulten.sonYayin.donemi}>{bulten.adi}</a>
+                                            <a href={bulten.sonYayin.url} target="_blank" title={bulten.sonYayin.donemi} rel="noreferrer">{bulten.adi}</a>
                                         </Row>
                                     ))}
                                 </Row>
