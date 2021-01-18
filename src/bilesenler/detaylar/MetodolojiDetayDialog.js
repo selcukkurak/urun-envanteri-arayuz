@@ -35,9 +35,8 @@ export default function MetodolojiDetayDialog(){
                                 <thead>
                                 <tr>
                                     <td>Metodoloji Adı</td>
-                                    <td>Standartı Belirleyen Kurum</td>
                                     <td>Döküman Adı</td>
-                                    <td>Url</td>
+                                    <td>Standartı Belirleyen Kurum</td>
                                     <td>Geçerlilik Tarihi</td>
                                 </tr>
                                 </thead>
@@ -45,11 +44,8 @@ export default function MetodolojiDetayDialog(){
                                 {metodolojiler.length !== 0 &&  metodolojiler.map(metodoloji => (
                                   <tr key={metodoloji.id}>
                                       <td>{metodoloji.adi}</td>
+                                      <td><a href={metodoloji.url} target='_blank' rel="noreferrer">{metodoloji.dokumanAdi}</a></td>
                                       <td>{metodoloji.standartiBelirleyenKurum}</td>
-                                      <td>{metodoloji.dokumanAdi}</td>
-                                      <td>
-                                          <a href={metodoloji.url} target='_blank'>{metodoloji.url}</a>
-                                      </td>
                                       <td>{metodoloji.gecerlilikTarihi}</td>
                                   </tr>
                                 ))}
