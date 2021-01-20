@@ -25,7 +25,7 @@ export const Ikonlar = memo(props => {
       <Kaynaklar>
         {sayilar.anket !== 0 && <Ikon tooltip='Anket' intent='danger'><Metin>a</Metin></Ikon>}
         {sayilar.idariKayit !== 0 && <Ikon tooltip='İdari Kayıt' intent='warning'><Metin>ik</Metin></Ikon>}
-        {sayilar.urunler !== 0 && <Ikon tooltip='İstatistiki Ürün' intent='success'><Metin>ü</Metin></Ikon>}
+        {sayilar.urun !== 0 && <Ikon tooltip='İstatistiki Ürün' intent='success'><Metin>ü</Metin></Ikon>}
       </Kaynaklar>
     </div>
   )

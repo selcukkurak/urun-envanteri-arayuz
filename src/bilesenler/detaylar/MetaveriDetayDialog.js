@@ -21,7 +21,14 @@ const Baslik = styled.div`
   font-weight: bold;
 `
 const Yazi = styled.div`
-  padding: 5%;
+  margin-top:16px;
+`
+const Icerik = styled.div`
+  margin-bottom: 16px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 `
 
 function MetaveriDetayDialog () {
@@ -50,7 +57,7 @@ function MetaveriDetayDialog () {
       >
         <div className={Classes.DRAWER_BODY}>
           <div className={Classes.DIALOG_BODY}>
-            <Accordion>
+            <Accordion allowZeroExpanded>
               {Object.keys(groupByMetaveriler).map((baslik, index) => (
                 <AccordionItem key={index} onClick={() => handleClickMetaveriItem(index)}>
                   <AccordionItemHeading>
@@ -58,12 +65,15 @@ function MetaveriDetayDialog () {
                       {baslik}
                     </AccordionItemButton>
                   </AccordionItemHeading>
-                  {siraliAlanAdlari.map((metaveri, key) => (
-                    <AccordionItemPanel key={key}>
-                      <Baslik>{metaveri.alanAdi}</Baslik>
-                      <Yazi>{htmlParser(`${metaveri.aciklama}`)}</Yazi>
+                    <AccordionItemPanel>
+                      {siraliAlanAdlari.map((metaveri, key) => (
+                        <Icerik  key={key}>
+                          <Baslik>{metaveri.alanAdi}</Baslik>
+                          <Yazi>{htmlParser(`${metaveri.aciklama}`)}</Yazi>
+                        </Icerik>
+                        ))}
                     </AccordionItemPanel>
-                  ))}
+
                 </AccordionItem>
               ))}
             </Accordion>

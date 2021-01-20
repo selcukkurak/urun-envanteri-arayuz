@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { tekilBultenler } from '../store/selectors'
-import { SayiGosterge } from './Liste'
-import { Card } from '@blueprintjs/core'
+import Gosterge from './Gosterge'
 
 function HaberBulteni (props) {
   const haberbultenleri = useRecoilValue(tekilBultenler)
 
   return (
-    <Card>
-      <SayiGosterge>{props.filtreliBultenler ? props.filtreliBultenler.length : 0}</SayiGosterge>
-      /
-      <SayiGosterge>{haberbultenleri.length}</SayiGosterge>
-      HABER BÜLTENİ
-    </Card>
+    <Gosterge
+      toplam={haberbultenleri}
+      filtreli={props.filtreliBultenler}
+      filtreliText="Ürünlerin İçerdiği"
+      toplamText="Toplam"
+      baslik="Haber Bülteni"
+    />
   )
 
 }

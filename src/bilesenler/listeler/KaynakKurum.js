@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { siraliKurumlar } from '../store/selectors'
-import { SayiGosterge } from './Liste'
-import { Card } from '@blueprintjs/core'
+import Gosterge from './Gosterge'
 
 function KaynakKurum (props) {
   const kaynakKurumlar = useRecoilValue(siraliKurumlar)
 
   return (
-    <Card>
-      <SayiGosterge>{props.filtreliKurumlar.length}</SayiGosterge>
-      /
-      <SayiGosterge>{kaynakKurumlar.length}</SayiGosterge>
-      KAYNAK KURUM
-    </Card>
+    <Gosterge
+      toplam={kaynakKurumlar}
+      filtreli={props.filtreliKurumlar}
+      filtreliText="Ürünlerin İçerdiği"
+      toplamText="Toplam"
+      baslik="Kaynak Kurum"
+    />
 
   )
 }
