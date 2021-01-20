@@ -23,6 +23,10 @@ pipeline {
   }
   agent any
 
+  triggers {
+    gitlab(triggerOnPush: true)
+  }
+
   post {
     success {
       roket(grup: grup, imaj: "$imageName:$imageVersion")
