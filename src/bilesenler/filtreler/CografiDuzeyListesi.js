@@ -8,7 +8,10 @@ function CografiDuzeyListesi(){
     const referanslar = useRecoilValue(referanslarState)
     const setSecilenCografiDuzeyler = useSetRecoilState(seciliCografiDuzeylerState)
 
-    const handleChange = selectedOptions => setSecilenCografiDuzeyler(selectedOptions);
+    const handleChange = selectedOptions =>{
+      if(selectedOptions !== null) setSecilenCografiDuzeyler(selectedOptions);
+      else setSecilenCografiDuzeyler([])
+    }
     const cografiDuzeyler = referanslar.COGRAFI_DUZEY && referanslar.COGRAFI_DUZEY.map(c => ( {
         label:c.adi , value:c.id
     }))

@@ -1,15 +1,16 @@
 import React, { memo, useCallback } from 'react'
 import { referanslarState, seciliUretimSikliklariState } from '../store'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useSetRecoilState, useRecoilValue } from 'recoil'
 import Select from 'react-select'
 import Filtre from './Filtre'
 
 function UretimSikligiListesi(){
     const referanslar = useRecoilValue(referanslarState)
-    const setSecilenUretimSikliklar = useSetRecoilState(seciliUretimSikliklariState)
+    const  setSecilenUretimSikliklar = useSetRecoilState(seciliUretimSikliklariState)
 
     const handleChange = useCallback(selectedOption => {
-        setSecilenUretimSikliklar(selectedOption)
+      if (selectedOption !== null) setSecilenUretimSikliklar(selectedOption)
+      else setSecilenUretimSikliklar([])
         }, [setSecilenUretimSikliklar])
 
 
