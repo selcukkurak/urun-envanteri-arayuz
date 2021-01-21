@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import AnketlerListesi from './AnketlerListesi'
 import UretimSikligiListesi from './UretimSikligiListesi'
 import CografiDuzeyListesi from './CografiDuzeyListesi'
-import UretimDurumu from './UretimDurumu'
 import HaberBulteniDurumu from './HaberBulteniDurumu'
 import BirimlerListesi from './BirimlerListesi'
 import KaynakKurumListesi from './KaynakKurumListesi'
@@ -12,6 +11,7 @@ import HaberBulteniListesi from './HaberBulteniListesi'
 import IdariKayitlarListesi from './IdariKayitlarListesi'
 import { AnaRenkler } from '@tuik/renkler'
 import { H4 } from '@blueprintjs/core'
+import useUrunler from '../listeler/hook/useUrunler'
 
 const Wrapper = styled.div`
   padding: 70px 12px 12px;
@@ -27,6 +27,7 @@ const Row = styled.div`
 `
 
 function Filtreler () {
+  const [filtreliUrunler] = useUrunler()
     return (
         <Wrapper>
             <Baslik>FİLTRELER</Baslik>
@@ -37,28 +38,25 @@ function Filtreler () {
                 <CografiDuzeyListesi />
             </Row>
             <Row>
-                <UretimDurumu/>
-            </Row>
-            <Row>
                 <HaberBulteniDurumu/>
             </Row>
             <Row>
-                <BirimlerListesi />
+                <BirimlerListesi filtreliUrunler={filtreliUrunler} />
             </Row>
             <Row>
-                <KaynakKurumListesi />
+                <KaynakKurumListesi filtreliUrunler={filtreliUrunler} />
             </Row>
             <Row>
-                <KurulusListesi/>
+                <KurulusListesi filtreliUrunler={filtreliUrunler}/>
             </Row>
             <Row>
-                <HaberBulteniListesi/>
+                <HaberBulteniListesi filtreliUrunler={filtreliUrunler}/>
             </Row>
             <Row>
-                <IdariKayitlarListesi/>
+                <IdariKayitlarListesi filtreliUrunler={filtreliUrunler}/>
             </Row>
             <Row>
-                <AnketlerListesi/>
+                <AnketlerListesi filtreliUrunler={filtreliUrunler}/>
             </Row>
         </Wrapper>
     )
