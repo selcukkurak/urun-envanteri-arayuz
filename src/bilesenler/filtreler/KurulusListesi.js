@@ -1,20 +1,21 @@
 import React, { memo, useCallback } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { siraliKuruluslar } from '../store/selectors'
+import {useSetRecoilState } from 'recoil'
 import { seciliKaynakKurulusState } from '../store'
 import Select from 'react-select'
 import Filtre from './Filtre'
+import useFiltreliKuruluslar from '../listeler/hook/useFiltreliKuruluslar'
 
-function KurulusListesi (){
-    const kuruluslar = useRecoilValue(siraliKuruluslar)
+function KurulusListesi (props){
+    const {filtreliUrunler} = props
+    const filtreliKuruluslar = useFiltreliKuruluslar(filtreliUrunler)
     const setSeciliKurulus = useSetRecoilState(seciliKaynakKurulusState)
 
-    const kuruluslarOption = kuruluslar.map(k => ({label:k.adi, value:k.id}))
+    const kuruluslarOption = filtreliKuruluslar.map(k => ({label:k.adi, value:k.id}))
     const handleChange = useCallback(selectionOption => {
         setSeciliKurulus(selectionOption)
     }, [setSeciliKurulus])
     return(
-        <Filtre etiket={kuruluslar && kuruluslar.length}>
+        <Filtre etiket={filtreliKuruluslar && filtreliKuruluslar.length}>
             <Select
               isClearable={true}
               placeholder='Paylaşılan Kuruluş'
