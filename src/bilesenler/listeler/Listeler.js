@@ -91,7 +91,7 @@ function Listeler () {
           </GrafikAlani>
         ) : (
           <Row>
-            <Col md={5}>
+            <Col xs={5} sm={5} md={5} lg={5}>
               <AramaAlani>
                 <Arama onUrunAramaChange={onUrunAramaChange}/>
               </AramaAlani>
@@ -116,7 +116,7 @@ function Listeler () {
                 }}/>
             </Col>
             {!seciliUrun ? (
-              <Col md={5}>
+              <Col xs={5} sm={5} md={5} lg={5}>
                 <GostergeAlani>
                   <Gosterge>
                     <KaynakKurum filtreliKurumlar={filtreliKurumlar}/>
@@ -129,18 +129,18 @@ function Listeler () {
                   </Gosterge>
                   <Gosterge>
                     <Suspense fallback={(<div>Yükleniyor</div>)}>
-                      <IdariKayit sayilar={filtreliUrunler.map(urun => urun.sayilar)}/>
+                      <IdariKayit filtreliUrunler={filtreliUrunler}/>
                     </Suspense>
                   </Gosterge>
                   <Gosterge>
                     <Suspense fallback={(<div>Yükleniyor</div>)}>
-                      <Anket sayilar={filtreliUrunler.map(urun => urun.sayilar)}/>
+                      <Anket filteriUrunler={filtreliUrunler}/>
                     </Suspense>
                   </Gosterge>
                 </GostergeAlani>
               </Col>
             ) : (
-              <Col sm={7}>
+              <Col xs={7} sm={7} md={7} lg={7}>
                 <UrunDetay/>
                 <Suspense fallback={(<div>Yükleniyor...</div>)}>
                   <DetayListesi/>
