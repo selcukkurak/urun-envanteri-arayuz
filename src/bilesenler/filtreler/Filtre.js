@@ -7,6 +7,8 @@ const Wrapper = styled.div`
 `
 
 const LeftElement = styled.div`
+  width: 85%;
+  max-width: 85%;
   flex: 1;
 `
 
