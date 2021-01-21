@@ -20,29 +20,35 @@ export const IcerikGosterge = styled.div`
   font-size: 12px;
 `
 export const GostergeDiv = styled.div`
-  padding-top: 0px;
+  padding-top: 0;
   display: flex;
   flex-direction: row;
 `
 export const IcerikDiv = styled.div`
   margin-right: 64px;
-  flex: 1 1 0%;
+  flex: 1 1 0;
+  
+  &:last-child {
+    margin-right: 0;
+  }
 `
 
 export default function Gosterge(props){
   return(
-    <Card style={{width:"200px", minWidth:"200px"}}>
+    <Card style={{maxWidth:"200px", width:"200px"}}>
       <BaslikGosterge>{props.baslik}</BaslikGosterge>
       <GostergeDiv>
-        {props.toplam.length !== (Array.isArray(props.filtreli) ? props.filtreli.length : props.filtreli) && (
           <IcerikDiv>
-            <SayiGosterge>{Array.isArray(props.filtreli) ? props.filtreli.length : props.filtreli}</SayiGosterge>
-            <IcerikGosterge>{props.filtreliText}</IcerikGosterge>
+            {props.toplam.length !== props.filtreli.length && (
+            <>
+              <SayiGosterge>{props.filtreli.length}</SayiGosterge>
+              <IcerikGosterge>Ürünle İlişkili</IcerikGosterge>
+            </>
+            )}
           </IcerikDiv>
-        )}
         <IcerikDiv>
-          <SayiGosterge>{props.toplam.length}</SayiGosterge>
-          <IcerikGosterge>{props.toplamText}</IcerikGosterge>
+            <SayiGosterge>{props.toplam.length}</SayiGosterge>
+            <IcerikGosterge>Toplam</IcerikGosterge>
         </IcerikDiv>
       </GostergeDiv>
     </Card>

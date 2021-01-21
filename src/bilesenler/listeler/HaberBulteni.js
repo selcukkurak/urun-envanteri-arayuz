@@ -10,8 +10,6 @@ function HaberBulteni (props) {
     <Gosterge
       toplam={haberbultenleri}
       filtreli={props.filtreliBultenler}
-      filtreliText="Ürünlerin İçerdiği"
-      toplamText="Toplam"
       baslik="Haber Bülteni"
     />
   )

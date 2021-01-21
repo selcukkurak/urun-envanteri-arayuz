@@ -10,8 +10,6 @@ function Kurulus (props) {
     <Gosterge
       toplam={kuruluslar}
       filtreli={props.filtreliKuruluslar}
-      filtreliText="Ürünlerin İçerdiği"
-      toplamText="Toplam"
       baslik="Paylaşılan Kuruluş"
     />
   )

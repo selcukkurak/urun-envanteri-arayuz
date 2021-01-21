@@ -10,8 +10,6 @@ function KaynakKurum (props) {
     <Gosterge
       toplam={kaynakKurumlar}
       filtreli={props.filtreliKurumlar}
-      filtreliText="Ürünlerin İçerdiği"
-      toplamText="Toplam"
       baslik="Kaynak Kurum"
     />
 

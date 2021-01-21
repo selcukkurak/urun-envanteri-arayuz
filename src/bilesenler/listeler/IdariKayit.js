@@ -2,18 +2,16 @@ import React, { memo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { siraliIdariKayitlar } from '../store/selectors'
 import Gosterge from './Gosterge'
+import useFiltreliIdariKayitlar from './hook/useFiltreliIdariKayitlar'
 
 function IdariKayit (props) {
   const idariKayitlar = useRecoilValue(siraliIdariKayitlar)
-  let toplam = 0;
-  const idariKayitToplam = props.sayilar.map((sayi)=>toplam+=Number(sayi.idariKayit));
+  const filtreliIdariKayitlar = useFiltreliIdariKayitlar(props.filtreliUrunler)
 
   return (
     <Gosterge
       toplam={idariKayitlar}
-      filtreli={idariKayitToplam[idariKayitToplam.length-1]}
-      filtreliText="Ürünlerin İçerdiği"
-      toplamText="Toplam"
+      filtreli={filtreliIdariKayitlar}
       baslik="İdari Kayıt"
     />
 
