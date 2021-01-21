@@ -1,21 +1,22 @@
 import React, { memo, useCallback } from 'react'
 import Select from 'react-select'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { siraliAnketler } from '../store/selectors'
+import {useSetRecoilState } from 'recoil'
 import { seciliAnketState } from '../store'
 import Filtre from './Filtre'
+import useFiltreliAnketler from '../listeler/hook/useFiltreliAnketler'
 
-function AnketlerListesi() {
-    const anketler = useRecoilValue(siraliAnketler)
+function AnketlerListesi(props) {
+    const {filtreliUrunler} = props
+    const filtreliAnketler = useFiltreliAnketler(filtreliUrunler)
     const setSeciliAnket = useSetRecoilState(seciliAnketState)
 
 
-    const anketlerOption = anketler.map(anket => ({label:anket.adi, value:anket.id}))
+    const anketlerOption = filtreliAnketler.map(anket => ({label:anket.adi, value:anket.id}))
     const handleChange = useCallback((selectedOption) => {
         setSeciliAnket(selectedOption)
     }, [setSeciliAnket])
     return(
-        <Filtre etiket={anketler && anketler.length}>
+        <Filtre etiket={filtreliAnketler && filtreliAnketler.length}>
             <Select
               isClearable={true}
               className="basic-single"
