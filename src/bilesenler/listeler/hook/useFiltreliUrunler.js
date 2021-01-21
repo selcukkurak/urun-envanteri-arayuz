@@ -1,26 +1,15 @@
 import { useMemo } from 'react'
 import {
   birimlerState, seciliAnketState,
-  seciliBirimlerState,
-  seciliCografiDuzeylerState, seciliIdariKayitState, seciliKaynakKurulusState,
-  seciliKaynakKurumState, seciliUretimDurumuState,
+  seciliBirimlerState, seciliBultenState,
+  seciliCografiDuzeylerState, seciliHaberBulteniDurumuState, seciliIdariKayitState, seciliKaynakKurulusState,
+  seciliKaynakKurumState,
   seciliUretimSikliklariState
 } from '../../store'
 import { useRecoilValue } from 'recoil'
 import { siraliUrunler } from '../../store/selectors'
 
-// function veriTuruBul (urun, secilenVeriTuru) {
-//   switch (secilenVeriTuru.id) {
-//     case 1:
-//       return urun.sayilar.anket > 0
-//     case 2:
-//       return urun.sayilar.idariKayit > 0
-//     case 3:
-//       return urun.sayilar.anket > 0 && urun.sayilar.idariKayit > 0
-//     default:
-//       return false
-//   }
-// }
+
 
 function idIceriyorMu (dizi, nesne, key) {
   if (dizi && dizi.length === 0) return true
@@ -30,12 +19,17 @@ function idIceriyorMu (dizi, nesne, key) {
     return value && dizi &&  dizi.some(item => item.value === value.id)
   }
 }
+function bultenIceriyorMu (bulten, nesne, key) {
+  if(bulten === null) return true
+  else if(bulten.durum === true) return nesne[key].length !== 0
+  else return nesne[key].length === 0
+}
 
 export default function useFiltreliUrunler (arananUrun) {
   const urunler = useRecoilValue(siraliUrunler)
   const birimler = useRecoilValue(birimlerState)
 
-  const secilenUretimDurumu = useRecoilValue(seciliUretimDurumuState)
+  const secilenHaberBulteniDurumu = useRecoilValue(seciliHaberBulteniDurumuState)
   const secilenUretimSikliklar = useRecoilValue(seciliUretimSikliklariState)
   const secilenCografiDuzeyler = useRecoilValue(seciliCografiDuzeylerState)
   const secilenBirimler = useRecoilValue(seciliBirimlerState)
@@ -43,25 +37,26 @@ export default function useFiltreliUrunler (arananUrun) {
   const secilenKaynakKurulus = useRecoilValue(seciliKaynakKurulusState)
   const secilenIdariKayit = useRecoilValue(seciliIdariKayitState)
   const secilenAnket = useRecoilValue(seciliAnketState)
+  const secilenHaberBulteni = useRecoilValue(seciliBultenState)
+
 
   return useMemo(() => {
-    const secilenAltBirimler = secilenBirimler && secilenBirimler.length === 0
+    const secilenAltBirimler =  secilenBirimler.length === 0
       ? []
       : birimler
         .filter(birim => secilenBirimler && secilenBirimler.includes(birim.ustBirimId))
         .map(birim => birim.id)
 
-
     console.debug(secilenBirimler, secilenAltBirimler, secilenKaynakKurum, secilenKaynakKurulus)
-    console.debug(secilenIdariKayit && urunler.filter(urun => urun.idariKayitlar.includes(secilenIdariKayit.value) ))
     return urunler.filter(urun => {
       return (idIceriyorMu(secilenUretimSikliklar, urun, 'periyot'))
         && (idIceriyorMu(secilenCografiDuzeyler, urun, 'cografiDuzey'))
-        && (secilenUretimDurumu === null || secilenUretimDurumu === urun.uretiliyor)
+        && (bultenIceriyorMu(secilenHaberBulteniDurumu, urun, 'bultenler'))
         && ((secilenBirimler && secilenBirimler.length === 0) || secilenAltBirimler.includes(urun.birimId))
+        && (!secilenHaberBulteni || urun.bultenler.some(b => b.bultenId === secilenHaberBulteni.value))
+        && (!secilenAnket || urun.anketler.some(a => a.id === secilenAnket.value))
+        && (!secilenIdariKayit || urun.idariKayitlar.some(idari => idari.id === secilenIdariKayit.value))
         && (!secilenKaynakKurum || urun.kurumlar.some(k => k.kurumId === secilenKaynakKurum.value))
-        && (!secilenIdariKayit || urun.idariKayitlar.includes(secilenIdariKayit.value))
-        && (!secilenAnket || urun.anketler.includes(secilenAnket.value))
         && (!secilenKaynakKurulus || urun.kurulus.some(kurulus => kurulus.id === secilenKaynakKurulus.value))
         && (!arananUrun || urun.adi.toLowerCase().includes(arananUrun.toLowerCase()))
     })
@@ -72,9 +67,10 @@ export default function useFiltreliUrunler (arananUrun) {
     secilenUretimSikliklar,
     secilenCografiDuzeyler,
     secilenBirimler,
+    secilenHaberBulteniDurumu,
     secilenKaynakKurum,
     secilenKaynakKurulus,
-    secilenUretimDurumu,
+    secilenHaberBulteni,
     secilenIdariKayit,
     secilenAnket
   ])
