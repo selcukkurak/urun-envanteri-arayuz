@@ -1,21 +1,23 @@
 import React, { memo, useCallback } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { tekilBultenler } from '../store/selectors'
+import {useSetRecoilState } from 'recoil'
 import { seciliBultenState } from '../store'
 import Select from 'react-select'
 import Filtre from './Filtre'
+import useFiltreliBultenler from '../listeler/hook/useFiltreliBultenler'
 
-function HaberBulteniListesi(){
-    const bultenler = useRecoilValue(tekilBultenler)
+function HaberBulteniListesi(props){
+    const {filtreliUrunler} = props
+    const filtreliBultenler = useFiltreliBultenler(filtreliUrunler)
     const setSeciliBulten = useSetRecoilState(seciliBultenState)
 
-    const bultenlerOption = bultenler.map(b => ({label:b.adi, value:b.id }))
+
+    const bultenlerOption = filtreliBultenler.map(b => ({label:b.adi, value:b.id }))
     const handleChange = useCallback((selectedOption) => {
         setSeciliBulten(selectedOption)
     }, [setSeciliBulten])
 
     return(
-        <Filtre etiket={bultenler && bultenler.length}>
+        <Filtre etiket={filtreliBultenler && filtreliBultenler.length}>
             <Select
               isClearable={true}
               placeholder='Haber Bültenleri'
