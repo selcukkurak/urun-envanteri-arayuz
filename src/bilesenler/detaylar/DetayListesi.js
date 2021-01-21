@@ -7,6 +7,7 @@ import {Card, HTMLTable} from "@blueprintjs/core";
 import BagliUrunListesi from "./BagliUrunListesi";
 import DetayAnketlerListesi from "./DetayAnketlerListesi";
 import DetayIdariKayitListesi from "./DetayIdariKayitListesi";
+import BultenUrl from './BultenUrl'
 
 const Bolum = styled.div`
   margin-bottom: 12px;
@@ -46,7 +47,7 @@ function DetayListesi(){
                                     <SubHeader>Haber Bültenleri</SubHeader>
                                     {urunBultenleri.map(bulten => (
                                         <Row key={bulten.id}>
-                                            <a href={bulten.sonYayin.url} target="_blank" title={bulten.sonYayin.donemi} rel="noreferrer">{bulten.adi}</a>
+                                          <BultenUrl bulten={bulten} />
                                         </Row>
                                     ))}
                                 </Row>
