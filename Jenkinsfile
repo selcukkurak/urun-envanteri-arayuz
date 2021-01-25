@@ -45,15 +45,15 @@ pipeline {
           imageName = 'tuik/' + properties.name
           imageVersion = properties.version + "-$BUILD_NUMBER"
         }
-//         npmBuild()
+        npmBuild()
       }
     }
 
-    /* stage('Docker') {
+    stage('Docker') {
       steps {
         dockerBuild(imageName: imageName, version: imageVersion)
       }
-    } */
+    }
 
     stage('Deploy') {
       steps {
