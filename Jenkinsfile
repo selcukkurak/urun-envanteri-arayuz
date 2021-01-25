@@ -38,18 +38,18 @@ pipeline {
   }
 
   stages {
-    /* stage('Build') {
+    stage('Build') {
       steps {
         script {
           def properties = projectProperties(npm: true)
           imageName = 'tuik/' + properties.name
           imageVersion = properties.version + "-$BUILD_NUMBER"
         }
-        npmBuild()
+//         npmBuild()
       }
     }
 
-    stage('Docker') {
+    /* stage('Docker') {
       steps {
         dockerBuild(imageName: imageName, version: imageVersion)
       }
