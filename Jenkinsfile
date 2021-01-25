@@ -38,7 +38,7 @@ pipeline {
   }
 
   stages {
-    stage('Build') {
+    /* stage('Build') {
       steps {
         script {
           def properties = projectProperties(npm: true)
@@ -53,7 +53,7 @@ pipeline {
       steps {
         dockerBuild(imageName: imageName, version: imageVersion)
       }
-    }
+    } */
 
     stage('Deploy') {
       steps {
