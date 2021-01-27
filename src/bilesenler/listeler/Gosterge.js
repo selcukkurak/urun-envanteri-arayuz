@@ -1,56 +1,87 @@
 import styled from 'styled-components'
-import { Card, H5 } from '@blueprintjs/core'
-import React from 'react'
+import { Card, Colors, H5, Menu } from '@blueprintjs/core'
+import React, { Fragment } from 'react'
+import { BaslikRenkleri } from '@tuik/renkler'
+import ReactList from 'react-list'
 
-export const BaslikGosterge = styled(H5)`
-  white-space: nowrap;
-  font-size: 16px;
-  color: rgb(138, 155, 168);
-`
-export const SayiGosterge = styled.div`
-  display: block;
-  color: rgb(194, 48, 48);
-  font-size: 2em;
-  font-weight: bold;
-  
-`
-export const IcerikGosterge = styled.div`
-  font-weight: bold;
-  color: rgb(138, 155, 168);
-  font-size: 12px;
-`
-export const GostergeDiv = styled.div`
-  padding-top: 0;
-  display: flex;
-  flex-direction: row;
-`
-export const IcerikDiv = styled.div`
-  margin-right: 64px;
-  flex: 1 1 0;
-  
+const SayiGosterge = styled.div`
+  color: rgb(15, 153, 96);
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-left: 4px;
+  margin-right: 8px;
+
   &:last-child {
     margin-right: 0;
   }
 `
+const SolaYasli = styled(H5)`
+  color: ${BaslikRenkleri.gri};
+  flex: 1;
+  margin-bottom: 0;
+`
+const ToplamSayi = styled.div`
+  display: inline-block;
+  color: rgb(194, 48, 48);
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-left: 4px;
+`
+
+const ListeBaslik = styled.div`
+  display: flex;
+  align-items: start;
+  padding: 8px 16px;
+`
+const Ayrac = styled.div`
+  display: inline-block;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: ${Colors.GRAY3};
+  vertical-align: text-top;
+`
+
+const ListeGovde = styled.div`
+  padding: 0;
+
+`
+const SagaYasli = styled.div`
+  
+`
+const Liste = styled(Menu)`
+  height: 180px;
+  overflow-y: auto;
+`
 
 export default function Gosterge(props){
   return(
-    <Card style={{maxWidth:"200px", width:"200px"}}>
-      <BaslikGosterge>{props.baslik}</BaslikGosterge>
-      <GostergeDiv>
-          <IcerikDiv>
-            {props.toplam.length !== props.filtreli.length && (
-            <>
-              <SayiGosterge>{props.filtreli.length}</SayiGosterge>
-              <IcerikGosterge>Ürünle İlişkili</IcerikGosterge>
-            </>
-            )}
-          </IcerikDiv>
-        <IcerikDiv>
-            <SayiGosterge>{props.toplam.length}</SayiGosterge>
-            <IcerikGosterge>Toplam</IcerikGosterge>
-        </IcerikDiv>
-      </GostergeDiv>
+    <Card style={{maxWidth:"400px", width:"400px", padding:0}}>
+      <ListeBaslik>
+        <SolaYasli>{props.title}</SolaYasli>
+        <SagaYasli>
+          <SayiGosterge style={{color:Colors.ORANGE3}}>{props.filtreli.length}</SayiGosterge>
+          {props.toplam.length !== props.filtreli.length && (
+            <Fragment>
+              <Ayrac>/</Ayrac>
+              <ToplamSayi>{props.toplam.length}</ToplamSayi>
+            </Fragment>
+          )}
+        </SagaYasli>
+      </ListeBaslik>
+      <ListeGovde>
+        <Liste>
+          <ReactList
+            type='uniform'
+            minSize={30}
+            pageSize={20}
+            itemRenderer={props.itemRenderer}
+            length={props.length}
+          />
+        </Liste>
+      </ListeGovde>
+
+
     </Card>
   )
 }

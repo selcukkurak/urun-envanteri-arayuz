@@ -15,7 +15,13 @@ import HaberBulteni from './HaberBulteni'
 import IdariKayit from './IdariKayit'
 import Anket from './Anket'
 import { Ikonlar } from './ikonlar'
-import { seciliUrunState } from '../store'
+import {
+  seciliAnketState, seciliBultenState,
+  seciliIdariKayitState,
+  seciliKaynakKurulusState,
+  seciliKaynakKurumState,
+  seciliUrunState
+} from '../store'
 import UrunDetay from '../detaylar/UrunDetay'
 import DetayListesi from '../detaylar/DetayListesi'
 import styled from 'styled-components'
@@ -35,6 +41,14 @@ const Gosterge = styled.div`
   flex: 0 50%;
   padding: 20px;
 `
+const BaslikGosterge = styled.div`
+  width: 100%;
+  font-size: 1.4em;
+  font-weight: bolder;
+  color: ${Colors.GRAY3};
+  padding: 8px 8px;
+  text-align: center;
+`
 
 const AramaAlani = styled.div`
   margin-bottom: 48px;
@@ -53,6 +67,11 @@ function Listeler () {
   const [gorselAcik, setGorselAcik] = useState(false)
   const urunler = useRecoilValue(siraliUrunler)
   const seciliUrun = useRecoilValue(seciliUrunState)
+  const seciliKaynakKurum = useRecoilValue(seciliKaynakKurumState)
+  const seciliAnket = useRecoilValue(seciliAnketState)
+  const seciliIdariKayit = useRecoilValue(seciliIdariKayitState)
+  const seciliKurulus = useRecoilValue(seciliKaynakKurulusState)
+  const seciliHaberBulteni = useRecoilValue(seciliBultenState)
   const [
     filtreliUrunler,
     selectedUrunKod,
@@ -116,27 +135,38 @@ function Listeler () {
                 }}/>
             </Col>
             {!seciliUrun ? (
-              <Col xs={5} sm={5} md={5} lg={5}>
+              <Col xs={7} sm={7} md={7} lg={7}>
                 <GostergeAlani>
-                  <Gosterge>
-                    <KaynakKurum filtreliKurumlar={filtreliKurumlar}/>
-                  </Gosterge>
-                  <Gosterge>
-                    <Kurulus filtreliKuruluslar={filtreliKuruluslar}/>
-                  </Gosterge>
-                  <Gosterge>
-                    <HaberBulteni filtreliBultenler={filtreliBultenler}/>
-                  </Gosterge>
-                  <Gosterge>
-                    <Suspense fallback={(<div>Yükleniyor</div>)}>
-                      <IdariKayit filtreliUrunler={filtreliUrunler}/>
-                    </Suspense>
-                  </Gosterge>
-                  <Gosterge>
-                    <Suspense fallback={(<div>Yükleniyor</div>)}>
-                      <Anket filteriUrunler={filtreliUrunler}/>
-                    </Suspense>
-                  </Gosterge>
+                  <BaslikGosterge>Ürüne Ait İstatististikler</BaslikGosterge>
+                  {!seciliKaynakKurum && (
+                    <Gosterge>
+                      <KaynakKurum filtreliKurumlar={filtreliKurumlar}/>
+                    </Gosterge>
+                  )}
+                  {!seciliKurulus && (
+                    <Gosterge>
+                      <Kurulus filtreliKuruluslar={filtreliKuruluslar}/>
+                    </Gosterge>
+                  )}
+                  {!seciliHaberBulteni && (
+                    <Gosterge>
+                      <HaberBulteni filtreliBultenler={filtreliBultenler}/>
+                    </Gosterge>
+                  )}
+                  {!seciliIdariKayit && (
+                    <Gosterge>
+                      <Suspense fallback={(<div>Yükleniyor</div>)}>
+                        <IdariKayit filtreliUrunler={filtreliUrunler}/>
+                      </Suspense>
+                    </Gosterge>
+                  )}
+                  {!seciliAnket && (
+                    <Gosterge>
+                      <Suspense fallback={(<div>Yükleniyor</div>)}>
+                        <Anket filteriUrunler={filtreliUrunler}/>
+                      </Suspense>
+                    </Gosterge>
+                  )}
                 </GostergeAlani>
               </Col>
             ) : (
