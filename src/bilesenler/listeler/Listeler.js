@@ -1,6 +1,6 @@
 import React, { memo, useState, Suspense } from 'react'
 import useUrunler from './hook/useUrunler'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { siraliUrunler } from '../store/selectors'
 import { Col, Container, Row } from 'react-grid-system'
 import Liste from './Liste'
@@ -16,10 +16,10 @@ import IdariKayit from './IdariKayit'
 import Anket from './Anket'
 import { Ikonlar } from './ikonlar'
 import {
-  seciliAnketState, seciliBultenState,
+  seciliAnketState, seciliBirimlerState, seciliBultenState, seciliCografiDuzeylerState, seciliHaberBulteniDurumuState,
   seciliIdariKayitState,
   seciliKaynakKurulusState,
-  seciliKaynakKurumState,
+  seciliKaynakKurumState, seciliUretimSikliklariState,
   seciliUrunState
 } from '../store'
 import UrunDetay from '../detaylar/UrunDetay'
@@ -66,16 +66,21 @@ const GrafikAlani = styled.div`
 function Listeler () {
   const [gorselAcik, setGorselAcik] = useState(false)
   const urunler = useRecoilValue(siraliUrunler)
-  const seciliUrun = useRecoilValue(seciliUrunState)
-  const seciliKaynakKurum = useRecoilValue(seciliKaynakKurumState)
-  const seciliAnket = useRecoilValue(seciliAnketState)
-  const seciliIdariKayit = useRecoilValue(seciliIdariKayitState)
-  const seciliKurulus = useRecoilValue(seciliKaynakKurulusState)
-  const seciliHaberBulteni = useRecoilValue(seciliBultenState)
+  const [seciliUrun, setSeciliUrun] = useRecoilState(seciliUrunState)
+  const [seciliKaynakKurum, setSelectedKaynakKurum] = useRecoilState(seciliKaynakKurumState)
+  const [seciliAnket, setSeciliAnket] = useRecoilState(seciliAnketState)
+  const [seciliIdariKayit, setSeciliIdariKayit] = useRecoilState(seciliIdariKayitState)
+  const [seciliKurulus, setSelectedKurulus] = useRecoilState(seciliKaynakKurulusState)
+  const [seciliHaberBulteni, setSeciliBulten] = useRecoilState(seciliBultenState)
+  const setSeciliHaberBulteniDurumu = useSetRecoilState(seciliHaberBulteniDurumuState)
+  const setSeciliCografiDuzeyler = useSetRecoilState(seciliCografiDuzeylerState)
+  const setSeciliBirimler = useSetRecoilState(seciliBirimlerState)
+  const setUretimSikliklar = useSetRecoilState(seciliUretimSikliklariState)
   const [
     filtreliUrunler,
     selectedUrunKod,
     onUrunAramaChange,
+    removeUrunAramaChange,
     handleClickRemoveItem,
     handleClickIstatistikiUrunItem
   ] = useUrunler()
@@ -85,6 +90,19 @@ function Listeler () {
 
   const handleGorselButonClick = () => {
     setGorselAcik(state => !state)
+  }
+
+  const resetFiltre = () => {
+    setSelectedKaynakKurum(null);
+    setSelectedKurulus(null);
+    setSeciliUrun(null);
+    setSeciliAnket(null);
+    setSeciliBirimler([]);
+    setSeciliIdariKayit(null);
+    setSeciliBulten(null)
+    setSeciliHaberBulteniDurumu(null);
+    setSeciliCografiDuzeyler([]);
+    setUretimSikliklar([]);
   }
 
   return (
@@ -101,6 +119,13 @@ function Listeler () {
                 icon='graph'>
                   {gorselAcik ? "Ürün Bağlantılarını Gizle" : "Ürün Bağlantılarını Göster"}
               </Button>
+              <Button
+                minimal
+                intent={'danger'}
+                onClick={resetFiltre}
+                rightIcon={'cross'}
+                text={"Filtreleri Temizle"}
+              />
             </SekmeAlani>
           </Col>
         </Row>
@@ -112,7 +137,7 @@ function Listeler () {
           <Row>
             <Col xs={5} sm={5} md={5} lg={5}>
               <AramaAlani>
-                <Arama onUrunAramaChange={onUrunAramaChange}/>
+                <Arama removeUrunAramaChange={removeUrunAramaChange} onUrunAramaChange={onUrunAramaChange}/>
               </AramaAlani>
               <Liste
                 title={'İstatistiki Ürünler'}
