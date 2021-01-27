@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react'
-import {useSetRecoilState} from 'recoil'
+import {useRecoilState} from 'recoil'
 import { seciliKaynakKurumState } from '../store'
 import Select from 'react-select'
 import Filtre from './Filtre'
@@ -8,7 +8,7 @@ import useFiltreliKurumlar from '../listeler/hook/useFiltreliKurumlar'
 function KaynakKurumListesi (props){
   const {filtreliUrunler} = props
     const filtreliKurumlar = useFiltreliKurumlar(filtreliUrunler)
-    const setSeciliKaynakKurum = useSetRecoilState(seciliKaynakKurumState)
+    const [seciliKaynakKurum, setSeciliKaynakKurum] = useRecoilState(seciliKaynakKurumState)
 
     const kurumlarOption = filtreliKurumlar.map(k => ({label:k.adi, value:k.kodu}))
 
@@ -16,7 +16,7 @@ function KaynakKurumListesi (props){
         setSeciliKaynakKurum(selectedOption)
     } , [setSeciliKaynakKurum])
     return(
-        <Filtre etiket={filtreliKurumlar && filtreliKurumlar.length}>
+        <Filtre etiket={filtreliKurumlar && filtreliKurumlar.length} secili={seciliKaynakKurum} title={"Kaynak Kurum"}>
             <Select
               isClearable={true}
               placeholder='Kaynak Kurum'

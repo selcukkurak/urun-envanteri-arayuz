@@ -1,14 +1,15 @@
 import React, { memo, useCallback } from 'react'
-import { useSetRecoilState } from 'recoil'
 import { seciliIdariKayitState } from '../store'
 import Select from 'react-select'
 import Filtre from './Filtre'
 import useFiltreliIdariKayitlar from '../listeler/hook/useFiltreliIdariKayitlar'
+import { useRecoilState } from 'recoil'
+import { localSort } from '../util/sort'
 
 function IdariKayitlarListesi (props) {
     const {filtreliUrunler} = props
-    const filtreliIdariKayitlar = useFiltreliIdariKayitlar(filtreliUrunler)
-    const setSeciliIdariKayit = useSetRecoilState(seciliIdariKayitState)
+    const filtreliIdariKayitlar = localSort(useFiltreliIdariKayitlar(filtreliUrunler), 'adi')
+    const [seciliIdariKayit, setSeciliIdariKayit] = useRecoilState(seciliIdariKayitState)
 
     console.debug(filtreliIdariKayitlar)
 
@@ -17,7 +18,7 @@ function IdariKayitlarListesi (props) {
         setSeciliIdariKayit(selectedOption)
     }, [setSeciliIdariKayit])
     return (
-        <Filtre etiket={filtreliIdariKayitlar && filtreliIdariKayitlar.length}>
+        <Filtre etiket={filtreliIdariKayitlar && filtreliIdariKayitlar.length} secili={seciliIdariKayit} title={"İdari Kayıt"}>
             <Select
               isClearable={true}
               placeholder='İdari Kayıtlar'

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Tag } from '@blueprintjs/core'
 
 const Wrapper = styled.div`
+        padding: 0;
   display: flex;
   align-items: center;
 `
@@ -17,19 +18,29 @@ const Etiket = styled.div`
   width: 40px;
   text-align: right;
 `
+const FiltreBaslik = styled.label`
+  padding-bottom: 0;
+  font-size: 14px;
+`
 
 function Filtre (props) {
   return (
-    <Wrapper>
-      <LeftElement>
-        {props.children}
-      </LeftElement>
-      <Etiket>
-        {props.etiket && (
-          <Tag intent='danger'>{props.etiket}</Tag>
-        )}
-      </Etiket>
-    </Wrapper>
+    <div>
+      {props.secili &&  (
+        <FiltreBaslik>{props.title}</FiltreBaslik>
+      )}
+      <Wrapper>
+        <LeftElement>
+          {props.children}
+        </LeftElement>
+        <Etiket>
+          {props.etiket && (
+            <Tag intent='danger'>{props.etiket}</Tag>
+          )}
+        </Etiket>
+      </Wrapper>
+    </div>
+
   )
 }
 

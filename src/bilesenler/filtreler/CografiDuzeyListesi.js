@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import { referanslarState, seciliCografiDuzeylerState } from '../store'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
 import Select from 'react-select'
 import Filtre from './Filtre'
 
 function CografiDuzeyListesi(){
     const referanslar = useRecoilValue(referanslarState)
-    const setSecilenCografiDuzeyler = useSetRecoilState(seciliCografiDuzeylerState)
+    const [seciliCografiDuzey, setSecilenCografiDuzeyler] = useRecoilState(seciliCografiDuzeylerState)
 
     const handleChange = selectedOptions =>{
       if(selectedOptions !== null) setSecilenCografiDuzeyler(selectedOptions);
@@ -16,7 +16,7 @@ function CografiDuzeyListesi(){
         label:c.adi , value:c.id
     }))
     return(
-        <Filtre>
+        <Filtre title={"Coğrafi Düzey"} secili={seciliCografiDuzey.length !== 0 && seciliCografiDuzey}>
             <Select
               closeMenuOnSelect={false}
               placeholder='Coğrafi Düzey'
