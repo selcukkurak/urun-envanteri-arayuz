@@ -8,7 +8,6 @@ import BagliUrunListesi from "./BagliUrunListesi";
 import DetayAnketlerListesi from "./DetayAnketlerListesi";
 import DetayIdariKayitListesi from "./DetayIdariKayitListesi";
 import BultenUrl from './BultenUrl'
-
 const Bolum = styled.div`
   margin-bottom: 12px;
 `
@@ -31,12 +30,12 @@ function DetayListesi(){
 
     console.debug('Ürün Detay', urun)
 
-
-
     const urunBultenleri = urun && urun.bultenler
         .map(b => bultenler.find(bulten => bulten.id === b.bultenId))
         .filter(bulten => !!bulten)
 
+    if(urunBultenleri.length === 0 && urun.anketler.length === 0 && urun.idariKayitlar.length === 0
+        && urun.paylasimlar.length === 0 && urun.urunler.length === 0) return null;
     return(
         <div>
             <Bolum>
