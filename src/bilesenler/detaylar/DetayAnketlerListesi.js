@@ -8,7 +8,7 @@ export default function DetayAnketlerListesi(props){
         <div>
             {props.anketler.map(anket => (
                 <div key={anket.id}>
-                    <AnketDetayDialog anketValue={anket}/>
+                    <AnketDetayDialog anket={anket}/>
                 </div>
             ))}
         </div>

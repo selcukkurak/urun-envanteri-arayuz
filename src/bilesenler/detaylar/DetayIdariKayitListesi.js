@@ -9,7 +9,7 @@ export default function DetayIdariKayitListesi(props){
         <div>
             {props.idariKayitlar.map(idari => (
                 <div key={idari.id}>
-                    <IdariKayitDialog idariKayitValue={idari}/>
+                    <IdariKayitDialog idariKayit={idari}/>
                 </div>
             ))}
         </div>

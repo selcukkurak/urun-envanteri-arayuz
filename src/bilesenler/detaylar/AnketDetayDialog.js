@@ -19,45 +19,46 @@ export const SutunIcerik = styled(Col)`
   padding-top: 10px;
 `
 
+
 export default function AnketDetayDrawer(props){
-    const {anketValue} = props
+    const {anket} = props
     const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
+    const anketHandleClickOpen = () => {
+      setOpen(true);
     };
-    const handleClose = () => {
-        setOpen(false);
+    const anketHandleClose = () => {
+      setOpen(false);
     };
-    const ustDurumu = anketValue.ustDurumu
-        ? anketValue.ustDurumu === 1 ? 'Evet' : 'Hayır'
+    const ustDurumu = anket && anket.ustDurumu
+        ? anket.ustDurumu === 1 ? 'Evet' : 'Hayır'
         : 'Belirtilmemiş'
 
-    const harzemliDurumu = anketValue.harzemliDurumu
-        ? anketValue.harzemliDurumu === 1 ? 'Evet' : 'Hayır'
+    const harzemliDurumu = anket && anket.harzemliDurumu
+        ? anket.harzemliDurumu === 1 ? 'Evet' : 'Hayır'
         : 'Belirtilmemiş'
+  if(!anket) return null
     return(
     <div>
-        <Container onClick={handleClickOpen}>
+        <Container onClick={anketHandleClickOpen}>
             <Row>
-                <Col style={{cursor:"pointer",paddingTop:10, color:'#5A6F7B', textDecoration:'underline',fontSize:'0.9em'}}
-                     sm={12}>{anketValue.adi}</Col>
+                <Col style={{cursor:"pointer", padding: 0}}
+                     sm={12}>{anket.adi}</Col>
             </Row>
         </Container>
         <Drawer
             isOpen={open}
             icon="info-sign"
-            onClose={handleClose}
-            title={anketValue.adi}
+            onClose={anketHandleClose}
+            title={anket.adi}
         >
             <Icerik>
               <div className={Classes.DRAWER_BODY}>
                 <Container>
                   <Row>
                     <SutunBaslik sm={3}>Periyodu:</SutunBaslik>
-                    <SutunIcerik sm={3}>{anketValue.periyot ? anketValue.periyot.adi : '-'}</SutunIcerik>
+                    <SutunIcerik sm={3}>{anket.periyot ? anket.periyot.adi : '-'}</SutunIcerik>
                     <SutunBaslik sm={3}>Veri Düzeyi:</SutunBaslik>
-                    <SutunIcerik sm={3}>{anketValue.birimDuzeyi ? anketValue.birimDuzeyi.adi : '-'}</SutunIcerik>
+                    <SutunIcerik sm={3}>{anket.birimDuzeyi ? anket.birimDuzeyi.adi : '-'}</SutunIcerik>
                   </Row>
                   <Row>
                     <Col sm={12}>
@@ -66,9 +67,9 @@ export default function AnketDetayDrawer(props){
                   </Row>
                   <Row>
                     <SutunBaslik sm={3}>Örneklem Boyutu:</SutunBaslik>
-                    <SutunIcerik sm={3}>{anketValue.orneklemSayisi}</SutunIcerik>
+                    <SutunIcerik sm={3}>{anket.orneklemSayisi}</SutunIcerik>
                     <SutunBaslik sm={3}>Coğrafi Düzeyi:</SutunBaslik>
-                    <SutunIcerik sm={3}>{anketValue.cografiDuzey ? anketValue.cografiDuzey.adi : '-'}</SutunIcerik>
+                    <SutunIcerik sm={3}>{anket.cografiDuzey ? anket.cografiDuzey.adi : '-'}</SutunIcerik>
                   </Row>
                   <Row>
                     <Col sm={12}>
@@ -77,7 +78,7 @@ export default function AnketDetayDrawer(props){
                   </Row>
                   <Row>
                     <SutunBaslik sm={3}>Şeması:</SutunBaslik>
-                    <SutunIcerik sm={3}>{anketValue.sema}</SutunIcerik>
+                    <SutunIcerik sm={3}>{anket.sema}</SutunIcerik>
                     <SutunBaslik sm={3}>Üst Durumu:</SutunBaslik>
                     <SutunIcerik sm={3}>{ustDurumu}</SutunIcerik>
                   </Row>
