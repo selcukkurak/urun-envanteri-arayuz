@@ -5,10 +5,11 @@ import Gosterge from './Gosterge'
 import useFiltreliAnketler from './hook/useFiltreliAnketler'
 import { MenuItem } from '@blueprintjs/core'
 import AnketDetayDialog from '../detaylar/AnketDetayDialog'
+import { localSort } from '../util/sort'
 
 function Anket (props) {
   const anketler = useRecoilValue(siraliAnketler)
-  const filtreliAnketler = useFiltreliAnketler(props.filteriUrunler)
+  const filtreliAnketler = localSort(useFiltreliAnketler(props.filteriUrunler), 'adi')
   return (
     <Gosterge
       title={"Anket"}

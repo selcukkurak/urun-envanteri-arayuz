@@ -5,10 +5,11 @@ import Gosterge from './Gosterge'
 import useFiltreliIdariKayitlar from './hook/useFiltreliIdariKayitlar'
 import { MenuItem } from '@blueprintjs/core'
 import IdariKayitDialog from '../detaylar/IdariKayitDialog'
+import { localSort } from '../util/sort'
 
 function IdariKayit (props) {
   const idariKayitlar = useRecoilValue(siraliIdariKayitlar)
-  const filtreliIdariKayitlar = useFiltreliIdariKayitlar(props.filtreliUrunler)
+  const filtreliIdariKayitlar = localSort(useFiltreliIdariKayitlar(props.filtreliUrunler), 'adi')
   return (
     <Gosterge
       title={"İdari Kayıt"}
