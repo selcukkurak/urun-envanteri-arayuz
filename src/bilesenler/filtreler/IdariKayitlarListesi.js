@@ -21,6 +21,7 @@ function IdariKayitlarListesi (props) {
         <Filtre etiket={filtreliIdariKayitlar && filtreliIdariKayitlar.length} secili={seciliIdariKayit} title={"İdari Kayıt"}>
             <Select
               isClearable={true}
+              value={seciliIdariKayit}
               placeholder='İdari Kayıtlar'
               options={idariKayitlarOption}
               onChange={handleChange}

@@ -20,6 +20,7 @@ function CografiDuzeyListesi(){
             <Select
               closeMenuOnSelect={false}
               placeholder='Coğrafi Düzey'
+              value={seciliCografiDuzey}
               isMulti
               options={cografiDuzeyler}
               onChange={handleChange}

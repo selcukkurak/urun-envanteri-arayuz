@@ -23,6 +23,7 @@ function AnketlerListesi(props) {
               className="basic-single"
               classNamePrefix="select"
               placeholder='Anketler'
+              value={seciliAnket}
               options={anketlerOption}
               onChange={handleChange}
             />

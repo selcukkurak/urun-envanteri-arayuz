@@ -19,6 +19,7 @@ function KurulusListesi (props){
             <Select
               isClearable={true}
               placeholder='Paylaşılan Kuruluş'
+              value={seciliKurulus}
               options={kuruluslarOption}
               onChange={handleChange}
             />

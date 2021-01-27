@@ -21,6 +21,7 @@ function BirimlerListesi (props) {
       <Select
         placeholder='Üretici Birimler'
         isMulti
+        value={seciliBirimler}
         options={optionDaireler}
         onChange={handleChange}
       />

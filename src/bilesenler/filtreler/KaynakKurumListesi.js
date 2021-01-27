@@ -20,6 +20,7 @@ function KaynakKurumListesi (props){
             <Select
               isClearable={true}
               placeholder='Kaynak Kurum'
+              value={seciliKaynakKurum}
               options={kurumlarOption}
               onChange={handleChange}
             />

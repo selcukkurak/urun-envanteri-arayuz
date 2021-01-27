@@ -19,6 +19,7 @@ function HaberBulteniListesi(props){
         <Filtre etiket={filtreliBultenler && filtreliBultenler.length} title={"Haber Bülteni"} secili={seciliBulten}>
             <Select
               isClearable={true}
+              value={seciliBulten}
               placeholder='Haber Bültenleri'
               options={bultenlerOption}
               onChange={handleChange}
