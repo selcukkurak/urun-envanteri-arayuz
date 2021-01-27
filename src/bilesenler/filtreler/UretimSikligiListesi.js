@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react'
 import { referanslarState, seciliUretimSikliklariState } from '../store'
-import { useSetRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import Select from 'react-select'
 import Filtre from './Filtre'
 
 function UretimSikligiListesi(){
     const referanslar = useRecoilValue(referanslarState)
-    const  setSecilenUretimSikliklar = useSetRecoilState(seciliUretimSikliklariState)
+    const  [secili, setSecilenUretimSikliklar] = useRecoilState(seciliUretimSikliklariState)
 
     const handleChange = useCallback(selectedOption => {
       if (selectedOption !== null) setSecilenUretimSikliklar(selectedOption)
@@ -16,7 +16,7 @@ function UretimSikligiListesi(){
 
     const periyotlar = referanslar.PERIYOT && referanslar.PERIYOT.map(p => ({label:p.adi, value:p.id}))
     return(
-        <Filtre>
+        <Filtre title={"Üretim Sıklığı"} secili={secili.length !== 0 && secili}>
             <Select
               closeMenuOnSelect={false}
               placeholder='Üretim Sıklığı'

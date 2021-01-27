@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import uniq from 'lodash/uniq'
-import { seciliUrun, tekilBultenler } from '../../store/selectors'
+import {tekilBultenler } from '../../store/selectors'
 
 export default function useFiltreliBultenler (filtreliUrunler) {
   const bultenler = useRecoilValue(tekilBultenler)
-  const urun = useRecoilValue(seciliUrun)
 
 
   return useMemo(() => {
@@ -16,15 +15,10 @@ export default function useFiltreliBultenler (filtreliUrunler) {
                 bulten.bultenId))
     )
     return bultenler.filter(data => {
-      if (urun) {
-        return urun.bultenler.some(b => b.bultenId === data.id)
-      } else {
-        return urunBultenIdleri.includes(data.id)
-      }
+      return urunBultenIdleri.includes(data.id)
     })
   }, [
     bultenler,
-    filtreliUrunler,
-    urun
+    filtreliUrunler
   ])
 }
