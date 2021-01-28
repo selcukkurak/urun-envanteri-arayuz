@@ -44,7 +44,7 @@ export default function useFiltreliUrunler (arananUrun) {
     const secilenAltBirimler =  secilenBirimler.length === 0
       ? []
       : birimler
-        .filter(birim => secilenBirimler && secilenBirimler.includes(birim.ustBirimId))
+        .filter(birim => secilenBirimler && secilenBirimler.map(secili => secili.value).includes(birim.ustBirimId))
         .map(birim => birim.id)
 
     console.debug(secilenBirimler, secilenAltBirimler, secilenKaynakKurum, secilenKaynakKurulus)
