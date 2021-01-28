@@ -8,7 +8,7 @@ export default function useFiltreliIdariKayitlar (filtreliUrunler){
   return useMemo(() => {
     const urunIdariKayitIdler = filtreliUrunler
       .flatMap(urun => urun.idariKayitlar.map(kayit => kayit.id))
-    console.log(urunIdariKayitIdler)
+
     return idariKayitlar.filter(idari => {
         return urunIdariKayitIdler.includes(idari.id)
     })
