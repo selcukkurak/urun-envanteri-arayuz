@@ -27,6 +27,7 @@ import DetayListesi from '../detaylar/DetayListesi'
 import styled from 'styled-components'
 import { Button, Colors } from '@blueprintjs/core'
 import UrunlerGrafik from '../grafik/UrunlerGrafik'
+import ResetFiltre from './ResetFiltre'
 
 const Wrapper = styled.div`
   padding: 62px 0 0;
@@ -66,20 +67,17 @@ const GrafikAlani = styled.div`
 function Listeler () {
   const [gorselAcik, setGorselAcik] = useState(false)
   const urunler = useRecoilValue(siraliUrunler)
-  const [seciliUrun, setSeciliUrun] = useRecoilState(seciliUrunState)
-  const [seciliKaynakKurum, setSelectedKaynakKurum] = useRecoilState(seciliKaynakKurumState)
-  const [seciliAnket, setSeciliAnket] = useRecoilState(seciliAnketState)
-  const [seciliIdariKayit, setSeciliIdariKayit] = useRecoilState(seciliIdariKayitState)
-  const [seciliKurulus, setSelectedKurulus] = useRecoilState(seciliKaynakKurulusState)
-  const [seciliHaberBulteni, setSeciliBulten] = useRecoilState(seciliBultenState)
-  const setSeciliHaberBulteniDurumu = useSetRecoilState(seciliHaberBulteniDurumuState)
-  const setSeciliCografiDuzeyler = useSetRecoilState(seciliCografiDuzeylerState)
-  const setSeciliBirimler = useSetRecoilState(seciliBirimlerState)
-  const setUretimSikliklar = useSetRecoilState(seciliUretimSikliklariState)
+  const seciliUrun = useRecoilValue(seciliUrunState)
+  const seciliKaynakKurum = useRecoilValue(seciliKaynakKurumState)
+  const seciliAnket = useRecoilValue(seciliAnketState)
+  const seciliIdariKayit = useRecoilValue(seciliIdariKayitState)
+  const seciliKurulus = useRecoilValue(seciliKaynakKurulusState)
+  const seciliHaberBulteni = useRecoilValue(seciliBultenState)
   const [
     filtreliUrunler,
     selectedUrunKod,
     onUrunAramaChange,
+    arananUrun,
     removeUrunAramaChange,
     handleClickRemoveItem,
     handleClickIstatistikiUrunItem
@@ -90,19 +88,6 @@ function Listeler () {
 
   const handleGorselButonClick = () => {
     setGorselAcik(state => !state)
-  }
-
-  const resetFiltre = () => {
-    setSelectedKaynakKurum(null);
-    setSelectedKurulus(null);
-    setSeciliUrun(null);
-    setSeciliAnket(null);
-    setSeciliBirimler([]);
-    setSeciliIdariKayit(null);
-    setSeciliBulten(null)
-    setSeciliHaberBulteniDurumu(null);
-    setSeciliCografiDuzeyler([]);
-    setUretimSikliklar([]);
   }
 
   return (
@@ -119,13 +104,7 @@ function Listeler () {
                 icon='graph'>
                   {gorselAcik ? "Ürün Bağlantılarını Gizle" : "Ürün Bağlantılarını Göster"}
               </Button>
-              <Button
-                minimal
-                intent={'danger'}
-                onClick={resetFiltre}
-                rightIcon={'cross'}
-                text={"Filtreleri Temizle"}
-              />
+              <ResetFiltre removeUrunAramaChange={removeUrunAramaChange}/>
             </SekmeAlani>
           </Col>
         </Row>
@@ -137,7 +116,7 @@ function Listeler () {
           <Row>
             <Col xs={5} sm={5} md={5} lg={5}>
               <AramaAlani>
-                <Arama removeUrunAramaChange={removeUrunAramaChange} onUrunAramaChange={onUrunAramaChange}/>
+                <Arama arananUrun={arananUrun} onUrunAramaChange={onUrunAramaChange}/>
               </AramaAlani>
               <Liste
                 title={'İstatistiki Ürünler'}
@@ -162,7 +141,7 @@ function Listeler () {
             {!seciliUrun ? (
               <Col xs={7} sm={7} md={7} lg={7}>
                 <GostergeAlani>
-                  <BaslikGosterge>Ürüne Ait İstatististikler</BaslikGosterge>
+                  <BaslikGosterge>Listelenen Ürünlere Ait İstatististikler</BaslikGosterge>
                   {!seciliKaynakKurum && (
                     <Gosterge>
                       <KaynakKurum filtreliKurumlar={filtreliKurumlar}/>

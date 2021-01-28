@@ -4,7 +4,7 @@ import useFiltreliUrunler from './useFiltreliUrunler'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 export default function useUrunler () {
-  const [arananUrun, setArananUrun] = useState(null)
+  const [arananUrun, setArananUrun] = useState("")
   const [selectedUrunKod, setSelectedUrunKod] = useRecoilState(seciliUrunState)
   const setSelectedHaberBulteni = useSetRecoilState(seciliBultenState)
 
@@ -13,6 +13,9 @@ export default function useUrunler () {
   const onUrunAramaChange = useCallback((event) => {
     setArananUrun(event.target.value)
   }, [])
+  const removeUrunAramaChange = useCallback(() => {
+    setArananUrun("")
+  },[])
 
   const handleClickRemoveItem = useCallback((event) =>{
     setSelectedUrunKod(null)
@@ -27,6 +30,8 @@ export default function useUrunler () {
     filtreliUrunler,
     selectedUrunKod,
     onUrunAramaChange,
+    arananUrun,
+    removeUrunAramaChange,
     handleClickRemoveItem,
     handleClickIstatistikiUrunItem
   ]
