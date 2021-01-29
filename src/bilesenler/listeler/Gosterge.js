@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Card, Colors, H5, Menu } from '@blueprintjs/core'
 import React, { Fragment } from 'react'
-import { BaslikRenkleri } from '@tuik/renkler'
+import { AnaRenkler } from '@tuik/renkler'
 import ReactList from 'react-list'
 
 const SayiGosterge = styled.div`
@@ -17,7 +17,7 @@ const SayiGosterge = styled.div`
   }
 `
 const SolaYasli = styled(H5)`
-  color: ${BaslikRenkleri.gri};
+  color: ${AnaRenkler.koyuKirmizi};
   flex: 1;
   margin-bottom: 0;
 `

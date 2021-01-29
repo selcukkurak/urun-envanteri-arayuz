@@ -46,7 +46,7 @@ const BaslikGosterge = styled.div`
   width: 100%;
   font-size: 1.4em;
   font-weight: bolder;
-  color: ${Colors.GRAY3};
+  color: ${Colors.GRAY1};
   padding: 8px 8px;
   text-align: center;
 `
