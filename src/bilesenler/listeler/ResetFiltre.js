@@ -36,6 +36,7 @@ export default function ResetFiltre(props){
 
   if(!seciliUrun && !seciliKurum && !seciliAnket && !seciliKayit && !seciliKurulus && !seciliBulten
     && !seciliHaberBulteniDurumu && seciliCografi.length === 0 && seciliBirimler.length === 0 && seciliUretim.length === 0
+    && !props.aranan
   ) return null
   return(
     <Button

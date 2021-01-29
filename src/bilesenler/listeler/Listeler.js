@@ -104,7 +104,7 @@ function Listeler () {
                 icon='graph'>
                   {gorselAcik ? "Ürün Bağlantılarını Gizle" : "Ürün Bağlantılarını Göster"}
               </Button>
-              <ResetFiltre removeUrunAramaChange={removeUrunAramaChange}/>
+              <ResetFiltre aranan={arananUrun} removeUrunAramaChange={removeUrunAramaChange}/>
             </SekmeAlani>
           </Col>
         </Row>
