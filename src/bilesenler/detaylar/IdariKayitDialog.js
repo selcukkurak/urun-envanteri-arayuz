@@ -1,27 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import {Container, Row, Col} from 'react-grid-system'
-import { Classes, Drawer, Divider, HTMLTable, Tag } from '@blueprintjs/core'
+import { Classes, Drawer, Divider, HTMLTable } from '@blueprintjs/core'
 import {siraliKurumlar} from "../store/selectors";
 import {useRecoilValue} from "recoil";
 import { SutunBaslik, SutunIcerik } from './AnketDetayDialog'
-import styled from 'styled-components'
-import { seciliUrunState } from '../store'
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
 
-const LeftElement = styled.div`
-  width: 85%;
-  max-width: 85%;
-  flex: 1;
-`
-
-const Etiket = styled.div`
-  margin-left: 12px;
-  text-align: right;
-`
 
 const GridDivider = () => {
     return (
@@ -33,44 +17,16 @@ const GridDivider = () => {
     )
 }
 export default function IdariKayitDrawer(props){
-    const {idariKayit} = props
-    const [open, setOpen] = React.useState(false)
-    const [, setSelectedItem] = useState(null)
-    const seciliUrun = useRecoilValue(seciliUrunState)
+    const {idariKayit, open,  handleClickCloseModal} = props
     const kurumlar = useRecoilValue(siraliKurumlar)
     const kurum = idariKayit && kurumlar.find(k => k.kodu === idariKayit.kaynakKurumId)
-
-    const handleClickOpen = (index) => {
-        setSelectedItem(index)
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
     if(!idariKayit) return null
     return(
         <div>
-            <Container onClick={handleClickOpen}>
-                <Row>
-                    <Col sm={12} style={{cursor:"pointer", padding:0}}>
-                        <Wrapper>
-                            <LeftElement>
-                                {idariKayit.adi}
-                            </LeftElement>
-                            {seciliUrun && (
-                              <Etiket>
-                                  <Tag>{kurum.adi}</Tag>
-                              </Etiket>
-                            )}
-
-                        </Wrapper>
-                    </Col>
-                </Row>
-            </Container>
             <Drawer
                 isOpen={open}
                 icon="info-sign"
-                onClose={handleClose}
+                onClose={handleClickCloseModal}
                 title={idariKayit.adi}
             >
                 <div className={Classes.DRAWER_BODY}>
@@ -92,7 +48,7 @@ export default function IdariKayitDrawer(props){
                         <GridDivider/>
                         <Row>
                             <SutunBaslik sm={3}>Yasal Hükümler:</SutunBaslik>
-                            <SutunIcerik sm={3}>{idariKayit.yasalHukum}</SutunIcerik>
+                            <SutunIcerik sm={9}>{idariKayit.yasalHukum}</SutunIcerik>
                         </Row>
                         <GridDivider/>
                         <Row>

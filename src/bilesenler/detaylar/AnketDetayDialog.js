@@ -21,14 +21,8 @@ export const SutunIcerik = styled(Col)`
 
 
 export default function AnketDetayDrawer(props){
-    const {anket} = props
-    const [open, setOpen] = React.useState(false);
-    const anketHandleClickOpen = () => {
-      setOpen(true);
-    };
-    const anketHandleClose = () => {
-      setOpen(false);
-    };
+    const {anket, open, handleClickCloseModal} = props
+
     const ustDurumu = anket && anket.ustDurumu
         ? anket.ustDurumu === 1 ? 'Evet' : 'Hayır'
         : 'Belirtilmemiş'
@@ -39,16 +33,10 @@ export default function AnketDetayDrawer(props){
   if(!anket) return null
     return(
     <div>
-        <Container onClick={anketHandleClickOpen}>
-            <Row>
-                <Col style={{cursor:"pointer", padding: 0}}
-                     sm={12}>{anket.adi}</Col>
-            </Row>
-        </Container>
         <Drawer
             isOpen={open}
             icon="info-sign"
-            onClose={anketHandleClose}
+            onClose={handleClickCloseModal}
             title={anket.adi}
         >
             <Icerik>
