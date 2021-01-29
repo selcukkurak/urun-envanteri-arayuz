@@ -18,17 +18,17 @@ const Wrapper = styled.div`
 `
 
 const YanMenu = styled.div`
-  width: 320px;
+  width: 280px;
   height: 100vh;
   top: 0;
   left: 0;
   position: fixed;
   overflow-y: auto;
-  background-color: ${Colors.LIGHT_GRAY5};
+  background-color: ${Colors.LIGHT_GRAY4};
   border-right: 1px solid ${Colors.LIGHT_GRAY2}
 `
 const OrtaBolme = styled.div`
-  margin-left: 320px;
+  margin-left: 280px;
   height: 100vh;
 `
 

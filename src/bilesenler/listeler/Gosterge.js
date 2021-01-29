@@ -41,7 +41,11 @@ const Ayrac = styled.div`
   color: ${Colors.GRAY3};
   vertical-align: text-top;
 `
-
+const Kart = styled(Card)`
+  padding:0;
+  max-width:${props => (props.lg.matches && "45vh") || (props.md.matches && "42vh") || (props.sm.matches && "15vh") ||  (props.xs.matches && "10vh")  };
+  width:${props => (props.lg.matches && "45vh") || (props.md.matches && "42vh") || (props.sm.matches && "15vh") ||  (props.xs.matches && "10vh")  };
+`
 const ListeGovde = styled.div`
   padding: 0;
 
@@ -55,8 +59,14 @@ const Liste = styled(Menu)`
 `
 
 export default function Gosterge(props){
+  const xs = window.matchMedia('(min-width: 768px)');
+  const sm = window.matchMedia('(min-width: 960px)');
+  const md = window.matchMedia('(min-width: 1280px)');
+  const lg = window.matchMedia('(min-width: 1600px)');
+
+  if(props.filtreli.length === 0) return null
   return(
-    <Card style={{maxWidth:"400px", width:"400px", padding:0}}>
+    <Kart xs={xs} sm={sm} md={md} lg={lg}>
       <ListeBaslik>
         <SolaYasli>{props.title}</SolaYasli>
         <SagaYasli>
@@ -82,6 +92,6 @@ export default function Gosterge(props){
       </ListeGovde>
 
 
-    </Card>
+    </Kart>
   )
 }
