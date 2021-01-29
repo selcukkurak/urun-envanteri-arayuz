@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import Axios from 'axios'
+import React from 'react'
 
 function BultenUrl (props) {
   const { bulten } = props
-  const [url, setUrl] = useState()
-
-  useEffect(() => {
-    Axios.get('/api/bultenler/url', { params: { id: bulten.sonYayin.id, dilId: 1 }})
-      .then(res => setUrl(res.data))
-  }, [bulten])
-
-  if (!url) return null
 
   return (
-    <a href={url} target='_blank' rel="noreferrer">{bulten.adi}</a>
+    <a href={"https://data.tuik.gov.tr/Bulten/Index?p=" + bulten.sonYayin.id} target='_blank' rel="noreferrer">{bulten.adi}</a>
   )
 }
 
