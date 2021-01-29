@@ -43,8 +43,8 @@ const Ayrac = styled.div`
 `
 const Kart = styled(Card)`
   padding: 0;
-  max-width: ${props => (props.lg.matches && '25vw') || (props.md.matches && '20vw') || (props.sm.matches && '15vw') || (props.xs.matches && '11.8vw')};
-  width: ${props => (props.lg.matches && '25vw') || (props.md.matches && '20vw') || (props.sm.matches && '15vw') || (props.xs.matches && '11.8vw')};
+  max-width: ${props => (props.lg.matches && '20vw') || (props.md.matches && '20vw') || (props.sm.matches && '20vw') || (props.xs.matches && '20vw')};
+  width: ${props => (props.lg.matches && '20vw') || (props.md.matches && '20vw') || (props.sm.matches && '20vw') || (props.xs.matches && '20vw')};
 `
 const ListeGovde = styled.div`
   padding: 0;
