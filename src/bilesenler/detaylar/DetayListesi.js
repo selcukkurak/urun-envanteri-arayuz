@@ -3,11 +3,12 @@ import styled from "styled-components";
 import {BaslikRenkleri} from '@tuik/renkler'
 import {seciliUrunDetay, tekilBultenler} from "../store/selectors";
 import {useRecoilValue} from "recoil";
-import {Card, HTMLTable} from "@blueprintjs/core";
+import { Card, HTMLTable, Tag } from '@blueprintjs/core'
 import BagliUrunListesi from "./BagliUrunListesi";
 import DetayAnketlerListesi from "./DetayAnketlerListesi";
 import DetayIdariKayitListesi from "./DetayIdariKayitListesi";
 import BultenUrl from './BultenUrl'
+import { uniqBy } from 'lodash'
 const Bolum = styled.div`
   margin-bottom: 12px;
 `
@@ -24,7 +25,7 @@ const SubHeader = styled.div`
 `
 
 
-function DetayListesi(){
+function DetayListesi (){
     const urun = useRecoilValue(seciliUrunDetay)
     const bultenler = useRecoilValue(tekilBultenler)
 
@@ -36,62 +37,68 @@ function DetayListesi(){
 
     if(urunBultenleri.length === 0 && urun.anketler.length === 0 && urun.idariKayitlar.length === 0
         && urun.paylasimlar.length === 0 && urun.urunler.length === 0) return null;
+
+    const periyotlar = uniqBy(urun.paylasimlar.flatMap(paylasim => paylasim.periyot), 'id')
+    const araclar = uniqBy(urun.paylasimlar.flatMap(paylasim => paylasim.arac), 'id')
+    const kuruluslar = uniqBy(urun.paylasimlar.flatMap(paylasim => paylasim.kurulus), 'id')
+    const joinPeriyot = periyotlar.map(p => p.adi).join(', ')
+    const joinArac = araclar.map(a => a.adi).join(', ')
     return(
         <div>
             <Bolum>
                 <Card>
                     <Row>
-                            {urun && urunBultenleri.length !== 0 && (
-                                <Row>
-                                    <SubHeader>Haber Bültenleri</SubHeader>
-                                    {urunBultenleri.map(bulten => (
-                                        <Row key={bulten.id}>
-                                          <BultenUrl bulten={bulten} />
-                                        </Row>
-                                    ))}
+                        {urun && urunBultenleri.length !== 0 && (
+                          <Row>
+                              <SubHeader>Haber Bültenleri</SubHeader>
+                              {urunBultenleri.map(bulten => (
+                                <Row key={bulten.id}>
+                                    <BultenUrl bulten={bulten} />
                                 </Row>
-                            )}
-                            {urun && urun.paylasimlar.length > 0 && (
-                                <Row>
-                                    <SubHeader>Paylaşımlar</SubHeader>
-                                    <HTMLTable size='small'>
-                                        <thead>
-                                            <tr>
-                                                <td>Paylaşılan Kuruluş</td>
-                                                <td>Kullanılan Araç</td>
-                                                <td>Gönderi Sıklığı</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {urun.paylasimlar.map(paylasim => (
-                                                <tr key={paylasim.id}>
-                                                    <td>{paylasim.kurulus.adi}</td>
-                                                    <td>{paylasim.arac.adi}</td>
-                                                    <td>{paylasim.periyot.adi}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </HTMLTable>
-                                </Row>
-                            )}
-                            {urun && urun.urunler.length > 0 && (
-                                <Row>
-                                    <SubHeader>Bağlı Ürünler</SubHeader>
-                                    <BagliUrunListesi urunler={urun.urunler} />
-                                </Row>
-                            )}
-                            {urun && urun.idariKayitlar.length > 0 && (
-                                <Row>
-                                    <SubHeader>İdari Kayıtlar</SubHeader>
-                                    <DetayIdariKayitListesi idariKayitlar={urun.idariKayitlar} />
-                                </Row>
-                            )}
-                            {urun && urun.anketler.length > 0 && (
-                                <Row>
-                                    <SubHeader>Anketler</SubHeader>
-                                    <DetayAnketlerListesi anketler={urun.anketler} />
-                                </Row>
-                            )}
+                              ))}
+                          </Row>
+                        )}
+                        {urun && urun.paylasimlar.length > 0 && (
+                          <Row>
+                              <SubHeader>Paylaşımlar</SubHeader>
+                              <HTMLTable size='small'>
+                                  <thead>
+                                  <tr>
+                                      <td>Paylaşılan Kuruluş</td>
+                                      <td>Kullanılan Araç</td>
+                                      <td>Gönderi Sıklığı</td>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  {kuruluslar.map(kurulus => (
+                                    <tr key={kurulus.id}>
+                                        <td>{kurulus.adi}</td>
+                                        <td><Tag minimal>{joinArac}</Tag></td>
+                                        <td><Tag minimal>{joinPeriyot}</Tag></td>
+                                    </tr>
+                                  ))}
+                                  </tbody>
+                              </HTMLTable>
+                          </Row>
+                        )}
+                        {urun && urun.urunler.length > 0 && (
+                          <Row>
+                              <SubHeader>Bağlı Ürünler</SubHeader>
+                              <BagliUrunListesi urunler={urun.urunler} />
+                          </Row>
+                        )}
+                        {urun && urun.idariKayitlar.length > 0 && (
+                          <Row>
+                              <SubHeader>İdari Kayıtlar</SubHeader>
+                              <DetayIdariKayitListesi idariKayitlar={urun.idariKayitlar} />
+                          </Row>
+                        )}
+                        {urun && urun.anketler.length > 0 && (
+                          <Row>
+                              <SubHeader>Anketler</SubHeader>
+                              <DetayAnketlerListesi anketler={urun.anketler} />
+                          </Row>
+                        )}
                     </Row>
                 </Card>
             </Bolum>
