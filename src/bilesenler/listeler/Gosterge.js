@@ -42,35 +42,35 @@ const Ayrac = styled.div`
   vertical-align: text-top;
 `
 const Kart = styled(Card)`
-  padding:0;
-  max-width:${props => (props.lg.matches && "45vh") || (props.md.matches && "42vh") || (props.sm.matches && "15vh") ||  (props.xs.matches && "10vh")  };
-  width:${props => (props.lg.matches && "45vh") || (props.md.matches && "42vh") || (props.sm.matches && "15vh") ||  (props.xs.matches && "10vh")  };
+  padding: 0;
+  max-width: ${props => (props.lg.matches && '25vw') || (props.md.matches && '20vw') || (props.sm.matches && '15vw') || (props.xs.matches && '11.8vw')};
+  width: ${props => (props.lg.matches && '25vw') || (props.md.matches && '20vw') || (props.sm.matches && '15vw') || (props.xs.matches && '11.8vw')};
 `
 const ListeGovde = styled.div`
   padding: 0;
 
 `
 const SagaYasli = styled.div`
-  
+
 `
 const Liste = styled(Menu)`
   height: 180px;
   overflow-y: auto;
 `
 
-export default function Gosterge(props){
-  const xs = window.matchMedia('(min-width: 768px)');
-  const sm = window.matchMedia('(min-width: 960px)');
-  const md = window.matchMedia('(min-width: 1280px)');
-  const lg = window.matchMedia('(min-width: 1600px)');
+export default function Gosterge (props) {
+  const xs = window.matchMedia('(min-width: 768px)')
+  const sm = window.matchMedia('(min-width: 960px)')
+  const md = window.matchMedia('(min-width: 1280px)')
+  const lg = window.matchMedia('(min-width: 1600px)')
 
-  if(props.filtreli.length === 0) return null
-  return(
+  if (props.filtreli.length === 0) return null
+  return (
     <Kart xs={xs} sm={sm} md={md} lg={lg}>
       <ListeBaslik>
         <SolaYasli>{props.title}</SolaYasli>
         <SagaYasli>
-          <SayiGosterge style={{color:Colors.ORANGE3}}>{props.filtreli.length}</SayiGosterge>
+          <SayiGosterge style={{ color: Colors.ORANGE3 }}>{props.filtreli.length}</SayiGosterge>
           {props.toplam.length !== props.filtreli.length && (
             <Fragment>
               <Ayrac>/</Ayrac>
@@ -90,8 +90,6 @@ export default function Gosterge(props){
           />
         </Liste>
       </ListeGovde>
-
-
     </Kart>
   )
 }
