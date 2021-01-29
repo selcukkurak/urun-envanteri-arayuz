@@ -1,6 +1,6 @@
 import React, { memo, useState, Suspense } from 'react'
 import useUrunler from './hook/useUrunler'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { siraliUrunler } from '../store/selectors'
 import { Col, Container, Row } from 'react-grid-system'
 import Liste from './Liste'
@@ -16,10 +16,10 @@ import IdariKayit from './IdariKayit'
 import Anket from './Anket'
 import { Ikonlar } from './ikonlar'
 import {
-  seciliAnketState, seciliBirimlerState, seciliBultenState, seciliCografiDuzeylerState, seciliHaberBulteniDurumuState,
+  seciliAnketState, seciliBultenState,
   seciliIdariKayitState,
   seciliKaynakKurulusState,
-  seciliKaynakKurumState, seciliUretimSikliklariState,
+  seciliKaynakKurumState,
   seciliUrunState
 } from '../store'
 import UrunDetay from '../detaylar/UrunDetay'
@@ -40,7 +40,7 @@ const GostergeAlani = styled.div`
 
 const Gosterge = styled.div`
   flex: 0 50%;
-  padding: 20px;
+  padding: 5px;
 `
 const BaslikGosterge = styled.div`
   width: 100%;
@@ -139,7 +139,7 @@ function Listeler () {
                 }}/>
             </Col>
             {!seciliUrun ? (
-              <Col xs={7} sm={7} md={7} lg={7}>
+              <Col xs={7} sm={7} md={7} lg={7} xl={7} xxl={7}>
                 <GostergeAlani>
                   <BaslikGosterge>Listelenen Ürünlere Ait İstatististikler</BaslikGosterge>
                   {!seciliKaynakKurum && (
