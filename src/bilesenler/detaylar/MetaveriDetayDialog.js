@@ -46,6 +46,7 @@ function MetaveriDetayDialog () {
   const groupBySeciliMetaveri = keyBy(seciliMetaveri, 'alanAdi')
 
   const siraliAlanAdlari = localSort(Object.values(groupBySeciliMetaveri), 'alanAdi')
+  if(urun.bultenler.length === 0 || Object.values(groupByMetaveriler).length === 0 ) return null
   return (
     <div>
       <Button minimal intent={'primary'} text={'Metaveriler'} onClick={handleClickOpen}/>

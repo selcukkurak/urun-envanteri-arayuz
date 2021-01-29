@@ -17,6 +17,7 @@ export default function MetodolojiDetayDialog(){
         setOpen(!open)
     }
 
+    if(metodolojiler.length === 0) return null
     return(
         <div>
             <Button minimal intent="primary" onClick={handleOpen}>
