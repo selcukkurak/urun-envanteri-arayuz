@@ -1,4 +1,4 @@
-import React, { memo, useState, Suspense } from 'react'
+import React, { memo, Suspense, useState } from 'react'
 import useUrunler from './hook/useUrunler'
 import { useRecoilValue } from 'recoil'
 import { siraliUrunler } from '../store/selectors'
@@ -16,7 +16,8 @@ import IdariKayit from './IdariKayit'
 import Anket from './Anket'
 import { Ikonlar } from './ikonlar'
 import {
-  seciliAnketState, seciliBultenState,
+  seciliAnketState,
+  seciliBultenState,
   seciliIdariKayitState,
   seciliKaynakKurulusState,
   seciliKaynakKurumState,
@@ -26,8 +27,8 @@ import UrunDetay from '../detaylar/UrunDetay'
 import DetayListesi from '../detaylar/DetayListesi'
 import styled from 'styled-components'
 import { Button, Colors } from '@blueprintjs/core'
-import UrunlerGrafik from '../grafik/UrunlerGrafik'
 import ResetFiltre from './ResetFiltre'
+import UrunlerGrafikYeni from '../grafik/UrunlerGrafikYeni'
 
 const Wrapper = styled.div`
   padding: 62px 0 0;
@@ -110,7 +111,7 @@ function Listeler () {
         </Row>
         {gorselAcik ? (
           <GrafikAlani>
-            <UrunlerGrafik />
+            <UrunlerGrafikYeni />
           </GrafikAlani>
         ) : (
           <Row>
