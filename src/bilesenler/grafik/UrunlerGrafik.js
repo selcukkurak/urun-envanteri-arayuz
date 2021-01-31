@@ -1,48 +1,53 @@
-import Sigma, { EdgeShapes, Filter, RandomizeNodePositions, RelativeSize } from 'react-sigma'
 import { nodelaraCevir } from './urunler-util'
-import useFiltreliUrunler from '../listeler/hook/useFiltreliUrunler'
-import ForceLink from 'react-sigma/lib/ForceLink'
+import Graph from 'react-graph-vis'
+import { memo, useMemo } from 'react'
+import { useRecoilValue } from 'recoil'
+import { urunlerState } from '../store'
 
-const settings = {
-  defaultNodeColor: '#ab2328',
-  drawEdges: true,
-  clone: true,
-  animationsTime: 3000,
-  edgeColor: 'default',
-  defaultEdgeColor: '#d79996',
-  borderSize: 1,
-  defaultNodeBorderColor: '#5b080b',
-  minArrowSize: 4
+const options = {
+  nodes: {
+    shape: "dot",
+    scaling: {
+      min: 1,
+      max: 24
+    },
+    font: {
+      size: 4,
+      face: "Tahoma",
+    }
+  },
+  edges: {
+    color: { inherit: true },
+    width: 0.15
+  },
+  interaction: {
+    hideEdgesOnDrag: true,
+    tooltipDelay: 200,
+    dragNodes: false
+  },
+  physics: {
+    barnesHut: {
+      avoidOverlap: 0.4
+    },
+    stabilization: { iterations: 100 }
+  },
+  height: 'calc(100vh - 114px)'
 }
 
 function UrunlerGrafik (props) {
-  const urunler = useFiltreliUrunler(null)
-  console.debug('Ürünler', urunler)
+  const urunler = useRecoilValue(urunlerState)
 
-  if (urunler.length === 0) return <div>Yükleniyor...</div>
+  const graph = useMemo(() => {
+    if (urunler.length === 0) return null
 
-  const urunGraph = nodelaraCevir(urunler)
-  console.debug('Graph', urunGraph)
+    return nodelaraCevir(urunler)
+  }, [urunler])
 
-  const filterNodes = node => {
-    return urunGraph.nodes.some(n => n.id === node.id)
-  }
+  if (!graph) return <div>Yükleniyor...</div>
 
   return (
-    <Sigma renderer='webgl' graph={urunGraph} settings={settings} style={{ height: 'calc(100vh - 114px)', maxWidth: 'inherit' }}>
-      <EdgeShapes default="arrow"/>
-      <Filter nodesBy={filterNodes} />
-      <RandomizeNodePositions>
-        <ForceLink
-          linLogMode
-          timeout={3000}
-          worker
-          backrgound
-        />
-        <RelativeSize initialSize={32} />
-      </RandomizeNodePositions>
-    </Sigma>
+    <Graph graph={graph} options={options} />
   )
 }
 
-export default UrunlerGrafik
+export default memo(UrunlerGrafik)

@@ -28,7 +28,7 @@ import DetayListesi from '../detaylar/DetayListesi'
 import styled from 'styled-components'
 import { Button, Colors } from '@blueprintjs/core'
 import ResetFiltre from './ResetFiltre'
-import UrunlerGrafikYeni from '../grafik/UrunlerGrafikYeni'
+import UrunlerGrafikYeni from '../grafik/UrunlerGrafik'
 
 const Wrapper = styled.div`
   padding: 62px 0 0;

@@ -1,19 +1,26 @@
 export function nodelaraCevir (urunler) {
-  const nodes = urunler.map(urun => ({
+  const urunIdleri = urunler.map(urun => urun.id)
+  const baglantilariDuzeltilmisUrunler = urunler.map(urun => ({
+    ...urun,
+    urunler: urun.urunler.filter(id => urunIdleri.includes(id))
+  }))
+
+  const nodes = baglantilariDuzeltilmisUrunler.map(urun => ({
     id: urun.id,
     label: urun.adi,
+    title: urun.adi,
     value: urun.urunler.length,
     group: urun.birimId
   }))
 
-  const edges = urunler.flatMap(urun => {
-    const target = urun.id
+  const edges = baglantilariDuzeltilmisUrunler.flatMap(urun => {
+    const to = urun.id
     return urun.urunler.map(id => ({
-      id: `edge-${target}-${id}`,
+      id: `edge-${id}-${to}`,
       from: id,
-      to: target
+      to: to
     }))
-  }).filter(edge => edge.from !== edge.to)
+  })
 
   const allConnectedIds = [
     ...edges.map(edge => edge.from),
