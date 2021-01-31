@@ -18,7 +18,7 @@ function KurulusListesi (props){
         <Filtre etiket={filtreliKuruluslar && filtreliKuruluslar.length} secili={seciliKurulus} title={"Paylaşılan Kuruluş"}>
             <Select
               isClearable={true}
-              placeholder='Paylaşılan Kuruluş'
+              placeholder='...'
               value={seciliKurulus}
               options={kuruluslarOption}
               onChange={handleChange}

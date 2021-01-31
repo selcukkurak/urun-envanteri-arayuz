@@ -14,6 +14,7 @@ const Label = styled.div`
     font-weight: 600;
     color: ${Colors.GRAY1};
     flex: 1;
+    margin-left: 4px;
 `
 
 const Secenek = styled(Tag)`

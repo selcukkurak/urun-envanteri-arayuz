@@ -19,7 +19,7 @@ function UretimSikligiListesi(){
         <Filtre title={"Üretim Sıklığı"} secili={seciliUretimSikliklar.length !== 0 && seciliUretimSikliklar}>
             <Select
               closeMenuOnSelect={false}
-              placeholder='Üretim Sıklığı'
+              placeholder='...'
               isMulti
               value={seciliUretimSikliklar}
               options={periyotlar}

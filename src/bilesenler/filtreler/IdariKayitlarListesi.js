@@ -22,7 +22,7 @@ function IdariKayitlarListesi (props) {
             <Select
               isClearable={true}
               value={seciliIdariKayit}
-              placeholder='İdari Kayıtlar'
+              placeholder='...'
               options={idariKayitlarOption}
               onChange={handleChange}
             />

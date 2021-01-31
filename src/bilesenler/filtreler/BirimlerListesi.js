@@ -20,7 +20,7 @@ function BirimlerListesi (props) {
   return (
     <Filtre etiket={filtreliDaireler && filtreliDaireler.length} title="Üretici Birim" secili={seciliBirimler.length !== 0 && seciliBirimler} >
       <Select
-        placeholder='Üretici Birimler'
+        placeholder='...'
         isMulti
         value={seciliBirimler}
         options={optionDaireler}

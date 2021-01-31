@@ -22,7 +22,7 @@ function AnketlerListesi(props) {
               isClearable={true}
               className="basic-single"
               classNamePrefix="select"
-              placeholder='Anketler'
+              placeholder='...'
               value={seciliAnket}
               options={anketlerOption}
               onChange={handleChange}
