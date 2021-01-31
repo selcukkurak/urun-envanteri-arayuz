@@ -2,7 +2,7 @@
   "name": "tuik-urun-envanteri-arayuz",
   "version": "1.1.0",
   "private": true,
-  "proxy": "http://envanter.tuik.gov.tr",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@blueprintjs/core": "^3.36.0",
     "@blueprintjs/table": "^3.8.18",
