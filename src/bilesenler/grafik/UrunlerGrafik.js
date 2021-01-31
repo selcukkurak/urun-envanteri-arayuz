@@ -3,6 +3,7 @@ import Graph from 'react-graph-vis'
 import { memo, useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 import { urunlerState } from '../store'
+import useFiltreliUrunler from '../listeler/hook/useFiltreliUrunler'
 
 const options = {
   nodes: {
@@ -36,17 +37,20 @@ const options = {
 
 function UrunlerGrafik (props) {
   const urunler = useRecoilValue(urunlerState)
+  const filtreliUrunler = useFiltreliUrunler(null)
 
   const graph = useMemo(() => {
     if (urunler.length === 0) return null
 
-    return nodelaraCevir(urunler)
-  }, [urunler])
+    return nodelaraCevir(urunler, filtreliUrunler)
+  }, [urunler, filtreliUrunler])
 
   if (!graph) return <div>Yükleniyor...</div>
 
   return (
-    <Graph graph={graph} options={options} />
+    <Graph
+      graph={graph}
+      options={options} />
   )
 }
 
