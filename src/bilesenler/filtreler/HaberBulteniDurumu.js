@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
-    margin-right: 52px;
+    margin-right: 4px;
 `
 
 const Label = styled.div`
@@ -40,7 +40,7 @@ export default function HaberBulteniDurumu(){
     console.debug(secili)
     return(
         <Wrapper>
-            <Label>Haber Bülteni:</Label>
+            <Label>Haber Bülteni</Label>
             {secenekler.map(secenek => (
                 <Secenek
                   minimal={!secili || secili.durum !== secenek.durum}
