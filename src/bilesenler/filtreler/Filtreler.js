@@ -23,7 +23,7 @@ const Baslik = styled(H4)`
 `
 
 const Row = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 `
 
 function Filtreler () {

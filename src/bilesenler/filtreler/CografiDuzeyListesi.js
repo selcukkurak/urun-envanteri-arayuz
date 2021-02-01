@@ -19,7 +19,7 @@ function CografiDuzeyListesi(){
         <Filtre title={"Coğrafi Düzey"} secili={seciliCografiDuzey.length !== 0 && seciliCografiDuzey}>
             <Select
               closeMenuOnSelect={false}
-              placeholder='...'
+              placeholder='Coğrafi Düzey'
               value={seciliCografiDuzey}
               isMulti
               options={cografiDuzeyler}

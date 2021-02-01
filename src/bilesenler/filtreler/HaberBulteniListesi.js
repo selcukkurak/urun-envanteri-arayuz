@@ -20,7 +20,7 @@ function HaberBulteniListesi(props){
             <Select
               isClearable={true}
               value={seciliBulten}
-              placeholder='...'
+              placeholder='Haber Bültenleri'
               options={bultenlerOption}
               onChange={handleChange}
             />

@@ -19,7 +19,7 @@ function KaynakKurumListesi (props){
         <Filtre etiket={filtreliKurumlar && filtreliKurumlar.length} secili={seciliKaynakKurum} title={"Kaynak Kurum"}>
             <Select
               isClearable={true}
-              placeholder='...'
+              placeholder='Kaynak Kurum'
               value={seciliKaynakKurum}
               options={kurumlarOption}
               onChange={handleChange}
