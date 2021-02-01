@@ -65,8 +65,10 @@ const GrafikAlani = styled.div`
   background-color: white;
 `
 
+const baglantilarSayfasinaGit = window.location.pathname === '/baglantilar'
+
 function Listeler () {
-  const [gorselAcik, setGorselAcik] = useState(false)
+  const [gorselAcik, setGorselAcik] = useState(baglantilarSayfasinaGit)
   const urunler = useRecoilValue(siraliUrunler)
   const seciliUrun = useRecoilValue(seciliUrunState)
   const seciliKaynakKurum = useRecoilValue(seciliKaynakKurumState)
