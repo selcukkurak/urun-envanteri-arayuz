@@ -19,6 +19,7 @@ const LeftElement = styled.div`
 
 const Etiket = styled.div`
   margin-left: 12px;
+  max-width:50%;
   text-align: right;
 `
 
@@ -52,7 +53,7 @@ export default function DetayIdariKayitListesi(props){
                                         {idari.adi}
                                     </LeftElement>
                                   {seciliUrun && kurum.map((k, key) => {
-                                    if(k.kodu === idari.kaynakKurumId && index === key){
+                                    if(k && k.kodu === idari.kaynakKurumId && index === key){
                                       return(
                                         <Etiket>
                                           <Tag>{k.adi}</Tag>
