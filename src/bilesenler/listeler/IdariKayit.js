@@ -1,6 +1,4 @@
 import React, { memo } from 'react'
-import { useRecoilValue } from 'recoil'
-import { siraliIdariKayitlar } from '../store/selectors'
 import Gosterge from './Gosterge'
 import useFiltreliIdariKayitlar from './hook/useFiltreliIdariKayitlar'
 import { MenuItem } from '@blueprintjs/core'
@@ -9,7 +7,6 @@ import { localSort } from '../util/sort'
 import handleModal  from '../detaylar/handleModal'
 
 function IdariKayit (props) {
-  const idariKayitlar = useRecoilValue(siraliIdariKayitlar)
   const filtreliIdariKayitlar = localSort(useFiltreliIdariKayitlar(props.filtreliUrunler), 'adi')
   const [selectedItem, setSelectedItem] = React.useState(null)
 
@@ -26,7 +23,6 @@ function IdariKayit (props) {
     <div>
       <Gosterge
         title={"İdari Kayıt"}
-        toplam={idariKayitlar}
         filtreli={filtreliIdariKayitlar}
         length={filtreliIdariKayitlar.length}
         itemRenderer={(index, key) => {
