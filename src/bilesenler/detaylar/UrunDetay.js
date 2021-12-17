@@ -6,7 +6,6 @@ import {Container, Row, Col} from 'react-grid-system'
 import MetaveriDetayDialog from "./MetaveriDetayDialog";
 import MetodolojiDetayDialog from "./MetodolojiDetayDialog";
 import styled from "styled-components";
-import {AnaRenkler, BaslikRenkleri} from '@tuik/renkler'
 import {seciliUrunState} from "../store";
 const Wrapper = styled.div`
   margin-bottom: 24px;
@@ -14,11 +13,11 @@ const Wrapper = styled.div`
 
 const CardHeader = styled.div`
   padding: 16px 16px 4px;
-  border-bottom: 1px solid ${AnaRenkler.acikGri};
+  border-bottom: 1px solid lightgray;
 `
 
 const Header = styled.div`
-  color: ${BaslikRenkleri.gri};
+  color: gray;
   font-weight: bold;
 `
 const uretimDurumu = durum => durum ? 'Üretiliyor' : 'Üretilmiyor'

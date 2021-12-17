@@ -9,7 +9,6 @@ import KaynakKurumListesi from './KaynakKurumListesi'
 import KurulusListesi from './KurulusListesi'
 import HaberBulteniListesi from './HaberBulteniListesi'
 import IdariKayitlarListesi from './IdariKayitlarListesi'
-import { AnaRenkler } from '@tuik/renkler'
 import { H4 } from '@blueprintjs/core'
 import useUrunler from '../listeler/hook/useUrunler'
 
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
 `
 
 const Baslik = styled(H4)`
-  color: ${AnaRenkler.koyuKirmizi};
+  color: darkred;
   margin-bottom: 20px;
 `
 

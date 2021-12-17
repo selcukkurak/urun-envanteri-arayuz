@@ -1,6 +1,5 @@
 import React,{memo} from "react";
 import styled from "styled-components";
-import {BaslikRenkleri} from '@tuik/renkler'
 import {seciliUrunDetay, tekilBultenler} from "../store/selectors";
 import {useRecoilValue} from "recoil";
 import { Card, HTMLTable, Tag } from '@blueprintjs/core'
@@ -20,7 +19,7 @@ const Row = styled.div`
 
 const SubHeader = styled.div`
   font-weight: bold;
-  color: ${BaslikRenkleri.gri};
+  color: gray;
   margin-bottom: 8px;
 `
 

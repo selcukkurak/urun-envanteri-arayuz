@@ -2,7 +2,6 @@ import React, { Fragment, memo } from 'react'
 import styled from 'styled-components'
 import { Card, Colors, H5, Menu } from '@blueprintjs/core'
 import ReactList from 'react-list'
-import { AnaRenkler } from '@tuik/renkler'
 
 const ListeBaslik = styled.div`
   display: flex;
@@ -11,7 +10,7 @@ const ListeBaslik = styled.div`
 `
 
 const SolaYasli = styled(H5)`
-  color: ${AnaRenkler.koyuKirmizi};
+  color: darkred;
   flex: 1;
   margin-bottom: 0;
 `
@@ -44,7 +43,7 @@ const ToplamSayi = styled.div`
 `
 const SayiGosterge = styled.div`
   display: inline-block;
-  color: ${AnaRenkler.koyuKirmizi};
+  color: darkred;
   font-weight: 600;
   font-size: 1.2em;
   margin-left: 4px;

@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 import { Card, H5, Menu } from '@blueprintjs/core'
 import React from 'react'
-import { AnaRenkler } from '@tuik/renkler'
 import ReactList from 'react-list'
 
 
 const SolaYasli = styled(H5)`
-  color: ${AnaRenkler.koyuKirmizi};
+  color: red;
   flex: 1;
   margin-bottom: 0;
 `
