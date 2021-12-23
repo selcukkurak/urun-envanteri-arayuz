@@ -14,7 +14,7 @@ import {
     AccordionItemHeading,
     AccordionItemPanel,
 } from 'react-accessible-accordion'
-import htmlParser from '../util/htmlParser'
+// import htmlParser from '../util/htmlParser'
 
 const Baslik = styled.div`
   font-size: 1.3em;
@@ -70,7 +70,7 @@ function MetaveriDetayDialog () {
                       {siraliAlanAdlari.map((metaveri, key) => (
                         <Icerik  key={key}>
                           <Baslik>{metaveri.alanAdi}</Baslik>
-                          <Yazi>{htmlParser(`${metaveri.aciklama}`)}</Yazi>
+                          <Yazi>{metaveri.aciklama}</Yazi>
                         </Icerik>
                         ))}
                     </AccordionItemPanel>
