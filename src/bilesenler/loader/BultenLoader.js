@@ -8,7 +8,7 @@ function BultenLoader () {
 
   useEffect(() => {
     Axios.get('/api/bultenler')
-      .then(response => setBultenler(response.data))
+      .then(response => setBultenler(response?.data))
   }, [setBultenler])
 
   return null

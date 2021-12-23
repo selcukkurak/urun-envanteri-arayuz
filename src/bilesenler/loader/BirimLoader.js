@@ -15,7 +15,7 @@ function BirimLoader () {
 
   useEffect(() => {
     Axios.get('/api/birimler')
-      .then(response => setBirimler(response.data.map(birimAdiKucult)))
+      .then(response => setBirimler(response?.data.map(birimAdiKucult)))
   }, [setBirimler])
 
   return null

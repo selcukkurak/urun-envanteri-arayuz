@@ -8,7 +8,7 @@ function AnketLoader () {
 
     useEffect(() => {
         Axios.get('/api/anketler')
-            .then(response => setAnketler(response.data))
+            .then(response => setAnketler(response?.data))
     }, [setAnketler])
 
     return null

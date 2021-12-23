@@ -8,7 +8,7 @@ function IdariKayitLoader () {
 
     useEffect(() => {
         Axios.get('/api/idari-kayitlar')
-            .then(response => setIdariKayitlar(response.data))
+            .then(response => setIdariKayitlar(response?.data))
     }, [setIdariKayitlar])
 
     return null
